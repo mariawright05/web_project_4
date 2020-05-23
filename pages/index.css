@@ -17,8 +17,6 @@
 .page__container {
   max-width: 882px;
   margin: 0 auto;
-  padding-bottom: 100px;
-
 }
 /*
 @media screen and (max-width: 1024px) {
@@ -145,4 +143,14 @@
   height: 18px;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.footer {
+  padding: 45px 0 60px;
+}
+
+.footer__text {
+  font-size: 18px;
+  line-height: 22px;
+  color: #545454;
 }
