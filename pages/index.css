@@ -102,3 +102,47 @@
   border: 2px solid #fff;
 }
 
+.photo-grid {}
+
+.photo-grid__container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-column-gap: 18px;
+  grid-row-gap: 20px;
+  padding: 0;
+  width: 100%; 
+}
+
+.photo-grid__item {
+  list-style-type: none;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.photo-grid__image {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px; 
+}
+
+.photo-grid__title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 21px;
+}
+
+.photo-grid__title {
+  color: #000;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29px;
+}
+
+.photo-grid__like {
+  background-image: url('../images/heart.svg');
+  width: 21px;
+  height: 18px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
