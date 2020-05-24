@@ -12,6 +12,7 @@
   background-color: #000;
   font-family: 'Inter', 'Helvetica', sans-serif;
   color: #fff;
+  padding: 0 19px;
 }
 
 .page__container {
@@ -111,6 +112,18 @@
   width: 100%; 
 }
 
+@media screen and (max-width: 936px) {
+  .photo-grid__container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 624px) {
+  .photo-grid__container {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
 .photo-grid__item {
   list-style-type: none;
   background-color: #fff;
@@ -118,6 +131,7 @@
 }
 
 .photo-grid__image {
+  width: 100%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px; 
 }
@@ -149,8 +163,23 @@
   padding: 45px 0 60px;
 }
 
+@media screen and (max-width: 624px) {
+  .footer {
+    padding: 28px 0 36px;
+  }
+}
+
 .footer__text {
   font-size: 18px;
   line-height: 22px;
   color: #545454;
+  margin: 0;
 }
+
+@media screen and (max-width: 624px) {
+  .footer__text {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
