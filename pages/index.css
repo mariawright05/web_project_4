@@ -54,6 +54,12 @@
   padding: 45px 0 41px;
 }
 
+@media screen and (max-width: 624px) {
+  .header {
+    padding: 28px 0 32px;
+  }
+}
+
 .profile {
   display: flex;
   align-items: center;
