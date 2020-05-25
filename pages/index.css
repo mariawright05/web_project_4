@@ -124,14 +124,14 @@
   }
 }
 
-.profile__user-title {
+.profile__user-about {
   margin: 0;
   font-size: 18px;
   line-height: 22px;
 }
 
 @media screen and (max-width: 624px) {
-  .profile__user-title {
+  .profile__user-about {
     text-align: center;
     font-size: 14px;
     line-height: 17px;
@@ -258,3 +258,79 @@
   }
 }
 
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+}
+
+.popup__container {
+  background-color: #fff;
+  padding: 36px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-shadow: 0 0 25px rgba(0, 0, 0, .15);
+  position: relative;
+  width: 430px;
+  height: 330px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 624px) {
+  .popup__container {
+    width: 70vw;
+    padding: 15px;
+  }
+}
+
+.popup__close-icon {
+  position: absolute;
+  top: -45px;
+  right: -45px;
+}
+
+.popup__info {
+  padding: 41px 0 31px;
+  margin: none;
+  border: none;
+}
+
+.popup__heading {
+  color: #000;
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 900;
+  margin: 0;
+}
+
+.popup__field {
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 13px;
+}
+
+.popup__button {
+  width: 100%;
+  background-color: #000;
+  height: 50px;
+  line-height: 22px;
+  font-size: 18px;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+}

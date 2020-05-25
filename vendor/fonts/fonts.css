@@ -18,14 +18,14 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  src: url(./Inter-Bold.woff2.woff2),
-  url(./Inter-Bold.woff.woff);
+  src: url(./Inter-Bold.woff2),
+  url(./Inter-Bold.woff);
 }
 
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 900;
-  src: url(./Inter-Black.woff2.woff2),
-  url(./Inter-Black.woff.woff);
+  src: url(./Inter-Black.woff2),
+  url(./Inter-Black.woff);
 }

@@ -9,87 +9,97 @@
   <meta name="author" content="Maria Wright">
   <link rel="stylesheet" href="./pages/index.css">
 </head>
-<body>
+<body class="page">
 
-  <div class="page">
-    <div class="page__container">
+  <div class="page__container">
 
-      <header class="header">
-        <img class="logo" src="./images/usa-logo-white.svg" alt="Around the US logo">
-      </header>
+    <header class="header">
+      <img class="logo" src="./images/usa-logo-white.svg" alt="Around the US logo">
+    </header>
 
-      <main>
+    <main>
 
-        <section class="profile">
-          <div class="profile__user-container">
-            <img class="profile__user-avatar" src="./images/avatar.jpg" alt="Jacques Cousteau avatar">
-            <div class="profile__name-container">
-              <h1 class="profile__user-name">Jacques Cousteau</h1>
-              <img class="profile__edit-button" src="./images/edit.svg" alt="edit pencil">
-              <p class="profile__user-title">Explorer</p>
+      <section class="profile">
+        <div class="profile__user-container">
+          <img class="profile__user-avatar" src="./images/avatar.jpg" alt="Jacques Cousteau avatar">
+          <div class="profile__name-container">
+            <h1 class="profile__user-name">Jacques Cousteau</h1>
+            <img class="profile__edit-button" src="./images/edit.svg" alt="edit pencil">
+            <p class="profile__user-about">Explorer</p>
+          </div>
+        </div>
+        <div class="profile__add-button-container">
+          <img class="profile__add-symbol" src="./images/add.svg" alt="add plus">
+        </div>
+      </section>
+
+      <section class="photo-grid">
+        <ul class="photo-grid__container">
+          <li class="photo-grid__item">
+            <img class="photo-grid__image" src="./images/yosemite-valley.jpg" alt="Yosemite Valley">
+            <div class="photo-grid__title-container">
+              <h2 class="photo-grid__title">Yosemite Valley</h2>
+              <div class="photo-grid__like"></div>
             </div>
-          </div>
-          <div class="profile__add-button-container">
-            <img class="profile__add-symbol" src="./images/add.svg" alt="add plus">
-          </div>
-        </section>
+          </li>
+          <li class="photo-grid__item">
+            <img class="photo-grid__image" src="./images/lake-louis.jpg" alt="Lake Louise">
+            <div class="photo-grid__title-container">
+              <h2 class="photo-grid__title">Lake Louise</h2>
+              <div class="photo-grid__like"></div>
+            </div>
+          </li>
+          <li class="photo-grid__item">
+            <img class="photo-grid__image" src="./images/bald-mountains.jpg" alt="Bald mountains">
+            <div class="photo-grid__title-container">
+              <h2 class="photo-grid__title">Bald mountains</h2>
+              <div class="photo-grid__like"></div>
+            </div>
+          </li>
+          <li class="photo-grid__item">
+            <img class="photo-grid__image" src="./images/latemar.jpg" alt="Latemar">
+            <div class="photo-grid__title-container">
+              <h2 class="photo-grid__title">Latemar</h2>
+              <div class="photo-grid__like"></div>
+            </div>
+          </li>
+          <li class="photo-grid__item">
+            <img class="photo-grid__image" src="./images/vanois-national.jpg" alt="Vanois National">
+            <div class="photo-grid__title-container">
+              <h2 class="photo-grid__title">Vanois National...</h2>
+              <div class="photo-grid__like"></div>
+            </div>
+          </li>
+          <li class="photo-grid__item">
+            <img class="photo-grid__image" src="./images/lago-di-braies.jpg" alt="Lago di Braies">
+            <div class="photo-grid__title-container">
+              <h2 class="photo-grid__title">Lago di Braies</h2>
+              <div class="photo-grid__like"></div>
+            </div>
+          </li>
+        </ul>
+      </section>
 
-        <section class="photo-grid">
-          <ul class="photo-grid__container">
-            <li class="photo-grid__item">
-              <img class="photo-grid__image" src="./images/yosemite-valley.jpg" alt="Yosemite Valley">
-              <div class="photo-grid__title-container">
-                <h2 class="photo-grid__title">Yosemite Valley</h2>
-                <div class="photo-grid__like"></div>
-              </div>
-            </li>
-            <li class="photo-grid__item">
-              <img class="photo-grid__image" src="./images/lake-louis.jpg" alt="Lake Louise">
-              <div class="photo-grid__title-container">
-                <h2 class="photo-grid__title">Lake Louise</h2>
-                <div class="photo-grid__like"></div>
-              </div>
-            </li>
-            <li class="photo-grid__item">
-              <img class="photo-grid__image" src="./images/bald-mountains.jpg" alt="Bald mountains">
-              <div class="photo-grid__title-container">
-                <h2 class="photo-grid__title">Bald mountains</h2>
-                <div class="photo-grid__like"></div>
-              </div>
-            </li>
-            <li class="photo-grid__item">
-              <img class="photo-grid__image" src="./images/latemar.jpg" alt="Latemar">
-              <div class="photo-grid__title-container">
-                <h2 class="photo-grid__title">Latemar</h2>
-                <div class="photo-grid__like"></div>
-              </div>
-            </li>
-            <li class="photo-grid__item">
-              <img class="photo-grid__image" src="./images/vanois-national.jpg" alt="Vanois National">
-              <div class="photo-grid__title-container">
-                <h2 class="photo-grid__title">Vanois National...</h2>
-                <div class="photo-grid__like"></div>
-              </div>
-            </li>
-            <li class="photo-grid__item">
-              <img class="photo-grid__image" src="./images/lago-di-braies.jpg" alt="Lago di Braies">
-              <div class="photo-grid__title-container">
-                <h2 class="photo-grid__title">Lago di Braies</h2>
-                <div class="photo-grid__like"></div>
-              </div>
-            </li>
-          </ul>
-        </section>
+    </main>
 
-      </main>
+    <footer class="footer">
+      <p class="footer__text">&copy; 2020 Around The U.S.</p>
+    </footer>
 
-      <footer class="footer">
-        <p class="footer__text">&copy; 2020 Around The U.S.</p>
-      </footer>
+  </div> <!--page__container-->
 
-    </div> <!--page__container-->
-  </div> <!--page-->
-  <div class="modal"></div>
+  <div class="popup">
+    <form class="popup__container">
+      <img class="popup__close-icon" alt="close icon" src="./images/Close Icon.svg">
+      <h3 class="popup__heading">Edit profile</h3>
+      <fieldset class="popup__info">
+        <input type="text" name="name" class="popup__field" placeholder="Name">
+        <input type="text" name="title" class="popup__field" placeholder="About me">
+      </fieldset>
+      <input type="submit" class="popup__button" value="Save">
+    </form>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
