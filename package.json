@@ -1,0 +1,23 @@
+{
+  "name": "web_project_4",
+  "version": "1.0.0",
+  "description": "### Overview",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariawright05/web_project_4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariawright05/web_project_4/issues"
+  },
+  "homepage": "https://github.com/mariawright05/web_project_4#readme",
+  "devDependencies": {
+    "create-by-css": "github:tadatuta/bem-tools-create-by-css"
+  }
+}

@@ -1,0 +1,5 @@
+.photo-grid__item {
+  list-style-type: none;
+  background-color: #fff;
+  border-radius: 10px;
+}

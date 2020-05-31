@@ -1,0 +1,12 @@
+.photo-grid__like {
+  background-image: url('../../../images/heart.svg');
+  width: 21px;
+  height: 18px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.photo-grid__like:hover {
+  opacity: .6;
+}
