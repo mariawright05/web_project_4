@@ -87,15 +87,17 @@
   </div> <!--page__container-->
 
   <div class="popup">
-    <form action="#" class="popup__container">
+    <div class="popup__container">
       <button class="popup__close-button"></button>
-      <h3 class="popup__heading">Edit profile</h3>
-      <fieldset class="popup__info">
-        <input type="text" name="name" class="popup__field popup__field_type_name" placeholder="Name">
-        <input type="text" name="title" class="popup__field popup__field_type_title" placeholder="About me">
-      </fieldset>
-      <input type="submit" class="popup__save-button" value="Save">
-    </form>
+      <form action="#" class="popup__form">
+        <h3 class="popup__heading">Edit profile</h3>
+        <fieldset class="popup__info">
+          <input type="text" name="name" class="popup__field popup__field_type_name" placeholder="Name">
+          <input type="text" name="title" class="popup__field popup__field_type_title" placeholder="About me">
+        </fieldset>
+        <input type="submit" class="popup__save-button" value="Save">
+      </form>
+    </div>
   </div>
 
   <script src="script.js"></script>
