@@ -195,22 +195,8 @@
     background-size: 16px 16px;
   }
 }
-/*
-.profile__add-symbol {
-  width: 22px;
-  margin: 14px auto;
-}
 
-@media screen and (max-width: 840px) {
-  .profile__add-symbol {
-    width: 16px;
-  }
-}
-*/
-
-.photo-grid {}
-
-.photo-grid__container {
+.photo-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-column-gap: 18px;
@@ -268,6 +254,11 @@
   height: 18px;
   background-repeat: no-repeat;
   background-size: cover;
+  cursor: pointer;
+}
+
+.photo-grid__like:hover {
+  opacity: 60%;
 }
 
 .footer {
