@@ -9,7 +9,6 @@ const jobInput = document.querySelector(".popup__field_type_title");
 
 function togglePopup() {
   popup.classList.toggle("popup_opened");
-  console.log("clicked");
 }
 
 openButton.addEventListener("click", togglePopup);
