@@ -6,21 +6,21 @@
 
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 18px;
   grid-row-gap: 20px;
   padding: 0;
-  width: 100%; 
 }
 
 @media screen and (max-width: 936px) {
   .photo-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 282px);
+    justify-content: center;
   }
 }
 
 @media screen and (max-width: 624px) {
   .photo-grid {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-columns: repeat(1, 282px);
   }
 }
