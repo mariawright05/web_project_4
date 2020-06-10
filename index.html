@@ -33,48 +33,6 @@
 
       <section>
         <ul class="photo-grid">
-          <li class="photo-grid__item">
-            <div class="photo-grid__image" style="background-image: url('./images/yosemite-valley.jpg')"></div>
-            <div class="photo-grid__title-container">
-              <h2 class="photo-grid__title">Yosemite Valley</h2>
-              <div class="photo-grid__like"></div>
-            </div>
-          </li>
-          <li class="photo-grid__item">
-            <div class="photo-grid__image" style="background-image: url('./images/lake-louis.jpg')"></div>
-            <div class="photo-grid__title-container">
-              <h2 class="photo-grid__title">Lake Louise</h2>
-              <div class="photo-grid__like"></div>
-            </div>
-          </li>
-          <li class="photo-grid__item">
-            <div class="photo-grid__image" style="background-image: url('./images/bald-mountains.jpg')"></div>
-            <div class="photo-grid__title-container">
-              <h2 class="photo-grid__title">Bald mountains</h2>
-              <div class="photo-grid__like"></div>
-            </div>
-          </li>
-          <li class="photo-grid__item">
-            <div class="photo-grid__image" style="background-image: url('./images/latemar.jpg')"></div>
-            <div class="photo-grid__title-container">
-              <h2 class="photo-grid__title">Latemar</h2>
-              <div class="photo-grid__like"></div>
-            </div>
-          </li>
-          <li class="photo-grid__item">
-            <div class="photo-grid__image" style="background-image: url('./images/vanois-national.jpg')"></div>
-            <div class="photo-grid__title-container">
-              <h2 class="photo-grid__title">Vanois National Park</h2>
-              <div class="photo-grid__like"></div>
-            </div>
-          </li>
-          <li class="photo-grid__item">
-            <div class="photo-grid__image" style="background-image: url('./images/lago-di-braies.jpg')"></div>
-            <div class="photo-grid__title-container">
-              <h2 class="photo-grid__title">Lago di Braies</h2>
-              <div class="photo-grid__like"></div>
-            </div>
-          </li>
         </ul>
       </section>
 
@@ -86,7 +44,7 @@
 
   </div> <!--page__container-->
 
-  <div class="popup">
+  <div class="popup popup_type_edit-profile">
     <div class="popup__container">
       <button class="popup__close-button"></button>
       <form action="#" class="popup__form">
@@ -99,6 +57,29 @@
       </form>
     </div>
   </div>
+
+  <div class="popup popup_type_add-card">
+    <form action="#" class="popup__container">
+      <button class="popup__close-button"></button>
+      <h3 class="popup__heading">New Place</h3>
+      <fieldset class="popup__info">
+        <input type="text" name="title" class="popup__field popup__field_type_card-title" placeholder="Title">
+        <input type="url" name="url" class="popup__field popup__field_type_url" placeholder="Image link">
+      </fieldset>
+      <input type="submit" class="popup__save-button" value="Save">
+    </form>
+  </div>
+
+  <template class="card-template">
+    <li class="photo-grid__item">
+      <img class="photo-grid__image">
+      <div class="photo-grid__remove"></div>
+      <div class="photo-grid__title-container">
+        <h2 class="photo-grid__title"></h2>
+        <div class="photo-grid__like"></div>
+      </div>
+    </li>
+  </template>
 
   <script src="script.js"></script>
 </body>
