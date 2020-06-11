@@ -1,6 +1,7 @@
 // Wrappers
 const profilePopup = document.querySelector(".popup_type_edit-profile");
 const cardPopup = document.querySelector(".popup_type_add-card");
+const imagePopup = document.querySelector(".popup_type_image");
 const formElement = document.querySelector(".popup__container");
 
 // Buttons and other DOM elements
@@ -9,6 +10,8 @@ const closeEditButton = profilePopup.querySelector(".popup__close-button");
 
 const addButton = document.querySelector(".profile__add-button");
 const closeAddButton = cardPopup.querySelector(".popup__close-button");
+
+const closeImageButton = imagePopup.querySelector(".popup__close-button");
 
 
 const profileName = document.querySelector(".profile__user-name");
@@ -101,17 +104,22 @@ const createCard = (data) => {
     // changeHeartColor()
   })
 
-  cardRemoveButton.addEventListener("click", () => {
-    // removeCard()
+  cardRemoveButton.addEventListener("click", (e) => {
+    e.target.closest(".photo-grid__item").remove();
   })
 
   cardImage.addEventListener("click", () => {
-    // openPopup
+    togglePopup(imagePopup);
   })
+
+
 
   return cardElement;
 }
 
+closeImageButton.addEventListener("click", () => {
+  togglePopup(imagePopup);
+});
 
 const renderCard = (data) => {
   list.prepend(createCard(data));
