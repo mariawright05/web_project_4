@@ -17,6 +17,9 @@ const closeImageButton = imagePopup.querySelector(".popup__close-button");
 const profileName = document.querySelector(".profile__user-name");
 const profileAbout = document.querySelector(".profile__user-about");
 
+const displayImage = document.querySelector(".popup__image")
+const displayCaption = document.querySelector(".popup__image-caption");
+
 //Form functions
 function togglePopup(modal) {
   modal.classList.toggle("popup_opened");
@@ -87,7 +90,7 @@ const initialCards = [
 
 const cardTemplate = document.querySelector(".card-template").content.querySelector(".photo-grid__item");
 //const gridItem = document.querySelector(".photo-grid__item");
-const list = document.querySelector(".photo-grid");
+const imageList = document.querySelector(".photo-grid");
 
 
 const createCard = (data) => {
@@ -109,20 +112,17 @@ const createCard = (data) => {
   })
 
   cardImage.addEventListener("click", () => {
-    togglePopup(imagePopup);
+    showImage(data); 
+    togglePopup(imagePopup); 
   })
-
-
 
   return cardElement;
 }
 
-closeImageButton.addEventListener("click", () => {
-  togglePopup(imagePopup);
-});
+
 
 const renderCard = (data) => {
-  list.prepend(createCard(data));
+  imageList.prepend(createCard(data));
 }
 
 
@@ -130,3 +130,14 @@ initialCards.forEach((data) => {
   renderCard(data);
 })
 
+// Image popup
+
+closeImageButton.addEventListener("click", () => {
+  togglePopup(imagePopup);
+});
+
+function showImage (data) {
+  displayImage.src = data.link;
+  displayImage.alt = data.name;
+  displayCaption.textContent = data.name;
+}
