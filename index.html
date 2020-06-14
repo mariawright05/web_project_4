@@ -45,7 +45,7 @@
   </div> <!--page__container-->
 
   <div class="popup popup_type_edit-profile">
-    <div class="popup__container">
+    <div class="popup__container popup__profile-wrapper">
       <button class="popup__close-button"></button>
       <form action="#" class="popup__form">
         <h3 class="popup__heading">Edit profile</h3>
@@ -59,18 +59,20 @@
   </div>
 
   <div class="popup popup_type_add-card">
-    <form action="#" class="popup__container">
-      <button class="popup__close-button"></button>
-      <h3 class="popup__heading">New Place</h3>
-      <fieldset class="popup__info">
-        <input type="text" name="title" class="popup__field popup__field_type_card-title" placeholder="Title">
-        <input type="url" name="url" class="popup__field popup__field_type_url" placeholder="Image link">
-      </fieldset>
-      <input type="submit" class="popup__save-button" value="Save">
-    </form>
+    <div class="popup__container popup__card-wrapper">
+      <form action="#" class="popup__form">
+        <button class="popup__close-button"></button>
+        <h3 class="popup__heading">New Place</h3>
+        <fieldset class="popup__info">
+          <input type="text" name="title" class="popup__field popup__field_type_card-title" placeholder="Title">
+          <input type="url" name="url" class="popup__field popup__field_type_url" placeholder="Image link">
+        </fieldset>
+        <input type="submit" class="popup__save-button" value="Save">
+      </form>
+    </div>
   </div>
 
-  <div class="popup popup_type_image">    
+  <div class="popup popup_type_display-image">    
     <figure class="popup__image-wrapper">
       <img class="popup__image" src="" alt="">
       <figcaption class="popup__image-caption"></figcaption>

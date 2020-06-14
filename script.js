@@ -1,8 +1,9 @@
 // Wrappers
 const profilePopup = document.querySelector(".popup_type_edit-profile");
 const cardPopup = document.querySelector(".popup_type_add-card");
-const imagePopup = document.querySelector(".popup_type_image");
-const formElement = document.querySelector(".popup__container");
+const imagePopup = document.querySelector(".popup_type_display-image");
+const profileForm = profilePopup.querySelector(".popup__profile-wrapper");
+const cardForm = cardPopup.querySelector(".popup__card-wrapper");
 
 // Buttons and other DOM elements
 const editButton = document.querySelector(".profile__edit-button");
@@ -13,36 +14,47 @@ const closeAddButton = cardPopup.querySelector(".popup__close-button");
 
 const closeImageButton = imagePopup.querySelector(".popup__close-button");
 
-
+// Form inputs
 const profileName = document.querySelector(".profile__user-name");
 const profileAbout = document.querySelector(".profile__user-about");
 
+const nameInput = document.querySelector(".popup__field_type_name");
+const jobInput = document.querySelector(".popup__field_type_title");
+
+const cardTitle = cardPopup.querySelector(".popup__field_type_card-title");
+const cardLink = cardPopup.querySelector(".popup__field_type_url");
+
 const displayImage = document.querySelector(".popup__image")
 const displayCaption = document.querySelector(".popup__image-caption");
+
+const addCard = cardPopup.querySelector("popup__form");
+
 
 //Form functions
 function togglePopup(modal) {
   modal.classList.toggle("popup_opened");
 }
 
-formElement.addEventListener("submit", (evt) => {
+function toggleHeart(e){
+  e.target.classList.toggle('photo-grid__like_true');
+}
+
+profileForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
   profileName.textContent = nameInput.value;
-  profileTitle.textContent = jobInput.value;
+  profileAbout.textContent = jobInput.value;
   
-  togglePopup();
+  togglePopup(profilePopup);
 })
 
 // Profile form
-const nameInput = document.querySelector(".popup__field_type_name");
-const jobInput = document.querySelector(".popup__field_type_title");
+
 
 
 
 editButton.addEventListener("click", () => {
   togglePopup(profilePopup);
-  console.log("clicked edit button");
 });
 closeEditButton.addEventListener("click", () => {
   togglePopup(profilePopup);
@@ -103,8 +115,8 @@ const createCard = (data) => {
   cardTitle.textContent = data.name;
   cardImage.style.backgroundImage = `url(${data.link})`;
 
-  cardLikeButton.addEventListener("click", () => {
-    // changeHeartColor()
+  cardLikeButton.addEventListener("click", (e) => {
+    toggleHeart(e);
   })
 
   cardRemoveButton.addEventListener("click", (e) => {
@@ -119,23 +131,28 @@ const createCard = (data) => {
   return cardElement;
 }
 
-
-
 const renderCard = (data) => {
   imageList.prepend(createCard(data));
 }
-
 
 initialCards.forEach((data) => {
   renderCard(data);
 })
 
-// Image popup
+// Add new card
+cardForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  const data = {name: cardTitle.value, link: cardLink.value};
+  renderCard(data);
+  togglePopup(cardPopup);
+})
 
+// Image popup close
 closeImageButton.addEventListener("click", () => {
   togglePopup(imagePopup);
 });
 
+// Image popup
 function showImage (data) {
   displayImage.src = data.link;
   displayImage.alt = data.name;
