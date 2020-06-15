@@ -67,7 +67,6 @@ addButton.addEventListener("click", () => {
 });
 closeAddButton.addEventListener("click", () => {
   togglePopup(cardPopup);
-  console.log("click");
 });
 
 
@@ -102,7 +101,6 @@ const initialCards = [
 ];
 
 const cardTemplate = document.querySelector(".card-template").content.querySelector(".photo-grid__item");
-//const gridItem = document.querySelector(".photo-grid__item");
 const imageList = document.querySelector(".photo-grid");
 
 
