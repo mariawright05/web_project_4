@@ -67,6 +67,7 @@ addButton.addEventListener("click", () => {
 });
 closeAddButton.addEventListener("click", () => {
   togglePopup(cardPopup);
+  console.log("click");
 });
 
 
