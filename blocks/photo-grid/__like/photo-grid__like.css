@@ -5,8 +5,15 @@
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
+
 
 .photo-grid__like:hover {
   opacity: .6;
+}
+
+.photo-grid__like:focus {
+  outline: none;
 }

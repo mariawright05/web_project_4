@@ -72,21 +72,23 @@
     </div>
   </div>
 
-  <div class="popup popup_type_display-image">    
-    <figure class="popup__image-wrapper">
-      <img class="popup__image" src="" alt="">
-      <figcaption class="popup__image-caption"></figcaption>
+  <div class="popup popup_type_display-image">
+    <div class="popup__image-wrapper">   
+      <figure class="popup__figure">
+        <img class="popup__image" src="" alt="">
+        <figcaption class="popup__image-caption"></figcaption>
+      </figure>
       <button class="popup__close-button"></button>
-    </figure>
+    </div>
   </div>
 
   <template class="card-template">
     <li class="photo-grid__item">
       <div class="photo-grid__image"></div>
-      <div class="photo-grid__remove"></div>
+      <button class="photo-grid__remove"></button>
       <div class="photo-grid__title-container">
         <h2 class="photo-grid__title"></h2>
-        <div class="photo-grid__like"></div>
+        <button class="photo-grid__like"></button>
       </div>
     </li>
   </template>

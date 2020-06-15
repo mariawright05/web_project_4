@@ -8,6 +8,8 @@
   position: absolute;
   top: 24px;
   right: 16px;
+  border: none;
+  background-color: transparent;
 }
 
 .photo-grid__remove:hover {
