@@ -27,18 +27,43 @@ const cardLink = cardPopup.querySelector(".popup__field_type_url");
 const displayImage = document.querySelector(".popup__image")
 const displayCaption = document.querySelector(".popup__image-caption");
 
-const addCard = cardPopup.querySelector("popup__form");
+const cardTemplate = document.querySelector(".card-template").content.querySelector(".photo-grid__item");
+const imageList = document.querySelector(".photo-grid");
 
 
-//Form functions
+
+// TOGGLE FUNCTIONS
+
+// Opens or closes all popups 
 function togglePopup(modal) {
   modal.classList.toggle("popup_opened");
 }
 
+// Makes heart button active or non-active
 function toggleHeart(e){
   e.target.classList.toggle('photo-grid__like_true');
 }
 
+
+
+// DISPLAY IMAGE POPUP
+
+// Causes image to popup when clicked
+function showImage (data) {
+  displayImage.src = data.link;
+  displayImage.alt = data.name;
+  displayCaption.textContent = data.name;
+}
+
+// Image popup close
+closeImageButton.addEventListener("click", () => {
+  togglePopup(imagePopup);
+});
+
+
+// PROFILE FORM
+
+// Saves profile information and closes popup
 profileForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
@@ -46,30 +71,31 @@ profileForm.addEventListener("submit", (evt) => {
   profileAbout.textContent = jobInput.value;
   
   togglePopup(profilePopup);
-})
+});
 
-// Profile form
-
-
-
-
+// Opens profile form
 editButton.addEventListener("click", () => {
   togglePopup(profilePopup);
 });
+
+// Closes profile form
 closeEditButton.addEventListener("click", () => {
   togglePopup(profilePopup);
 });
 
 
-// Add card form
+
+// IMAGE CARDS
+
+// Opens add card form
 addButton.addEventListener("click", () => {
   togglePopup(cardPopup);
 });
+
+// Closes add card form
 closeAddButton.addEventListener("click", () => {
   togglePopup(cardPopup);
 });
-
-
 
 
 // Initial card data
@@ -100,18 +126,15 @@ const initialCards = [
   }
 ];
 
-const cardTemplate = document.querySelector(".card-template").content.querySelector(".photo-grid__item");
-const imageList = document.querySelector(".photo-grid");
-
-
+// Creates initial and new cards using card template
 const createCard = (data) => {
   const cardElement = cardTemplate.cloneNode(true);
-  const cardTitle = cardElement.querySelector(".photo-grid__title");
+  const cardText = cardElement.querySelector(".photo-grid__title");
   const cardImage = cardElement.querySelector(".photo-grid__image");
   const cardLikeButton = cardElement.querySelector(".photo-grid__like");
   const cardRemoveButton = cardElement.querySelector(".photo-grid__remove");
 
-  cardTitle.textContent = data.name;
+  cardText.textContent = data.name;
   cardImage.style.backgroundImage = `url(${data.link})`;
 
   cardLikeButton.addEventListener("click", (e) => {
@@ -130,30 +153,20 @@ const createCard = (data) => {
   return cardElement;
 }
 
+// Adds card to display at top of list
 const renderCard = (data) => {
   imageList.prepend(createCard(data));
 }
 
+// Adds initial cards 
 initialCards.forEach((data) => {
   renderCard(data);
 })
 
-// Add new card
+// Add new card using form
 cardForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const data = {name: cardTitle.value, link: cardLink.value};
   renderCard(data);
   togglePopup(cardPopup);
 })
-
-// Image popup close
-closeImageButton.addEventListener("click", () => {
-  togglePopup(imagePopup);
-});
-
-// Image popup
-function showImage (data) {
-  displayImage.src = data.link;
-  displayImage.alt = data.name;
-  displayCaption.textContent = data.name;
-}
