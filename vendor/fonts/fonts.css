@@ -4,6 +4,7 @@
   font-weight: 400;
   src: url(./Inter-Regular.woff2),
   url(./Inter-Regular.woff);
+  font-display: swap;
 }
 
 @font-face {
@@ -12,6 +13,7 @@
   font-weight: 500;
   src: url(./Inter-Medium.woff2),
   url(./Inter-Medium.woff);
+  font-display: swap;
 }
 
 @font-face {
@@ -20,6 +22,7 @@
   font-weight: 700;
   src: url(./Inter-Bold.woff2),
   url(./Inter-Bold.woff);
+  font-display: swap;
 }
 
 @font-face {
@@ -28,4 +31,5 @@
   font-weight: 900;
   src: url(./Inter-Black.woff2),
   url(./Inter-Black.woff);
+  font-display: swap;
 }
