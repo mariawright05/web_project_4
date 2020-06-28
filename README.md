@@ -1,4 +1,4 @@
-# Project 5: Around The U.S.
+# Project 6: Around The U.S.
 
 ## Project Link
 
@@ -9,6 +9,11 @@
 This project is showcasing the knowledge learned from Practicum's class: Basic JavaScript and Working with the Browser.
 
 It is a web page showing a user's information and photos they have uploaded from around the US. Images can be deleted, liked, and new images added.
+
+This recent updated added:
+* Form validation
+* Closing modals with esc key
+* Closing modals by clicking outside the modal
 
 ## Technologies and Techniques Used
 
@@ -29,3 +34,6 @@ Some of the skills used are:
 * Adding information to an array
 * Element cloning
 * Template cloning
+* Working with Objects in JavaScript
+* Event handling
+* Form Validation
