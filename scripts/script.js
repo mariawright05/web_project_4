@@ -52,6 +52,21 @@ function togglePopup(modal) {
   };
 };
 
+//Closes popup if clicked outside popup
+function closeClick() {
+  const popups = document.querySelectorAll(".popup");
+  
+  popups.forEach((popup) => {
+    popup.addEventListener("click", (evt) => {
+      if (evt.target.classList.contains("popup_opened")) {
+        togglePopup(evt.target);
+      };
+    });
+  });
+};
+
+closeClick();
+
 // Makes heart button active or non-active
 function toggleHeart(evt){
   evt.target.classList.toggle('photo-grid__like_true');
@@ -184,66 +199,3 @@ cardForm.addEventListener("submit", (evt) => {
   renderCard(data);
   togglePopup(cardPopup);
 })
-
-// // Close modals by clicking on background
-//function to toggle the modals
-// function toggleModalWindow(modal){
-//   modal.classList.toggle('modal_active')  
- 
-// }
-
-///different function to close the modal on esc and clicking outside
-// function closeOut(evt) {
-//   toggleModalWindow(evt.target.closest(".modal"));
-//   evt.target.removeEventListener("click", closeOut);
-// }
-
-// function escKey(e) {
-//   const escKeyNum = 27;
-//   if (e.keyCode === escKeyNum) {
-//     toggleModalWindow(document.querySelector(".modal_active"));
-//   }
-//   e.target.removeEventListener("keyup", escKey);
-// }
-
-// const closingModals = () => {
-//   const modals = Array.from(document.querySelectorAll(".modal"));
-  
-//   modals.forEach((modalElem) => {
-//     modalElem.addEventListener("click", closeOut);
-//   });
-   
-
-//   modals.forEach(() => {
-//     document.addEventListener("keyup", escKey);
-//   });
-// };
-
-// closingModals();
-
-// // //Mine
-// function closePopup(evt) {
-//   togglePopup(evt.target.closest(".popup"));
-//   evt.target.removeEventListener('click', closePopup);
-// }
-
-// function escKey(evt) {
-//   if (evt.keyCode === "Escape") {
-//     togglePopup(document.querySelector(".popup_opened"));
-//   }
-//   evt.target.removeEventListener('keyup', escKey);
-// }
-
-// function closePopups() {
-//   const popups = document.querySelectorAll(".popup");
-  
-//   popups.forEach((popup) => {
-//     popup.addEventListener("click", closePopup);
-//   });
-
-//   popups.forEach((popup) => {
-//     popup.addEventListener('keyup', escKey);
-//   });
-// }
-
-// closePopups();
