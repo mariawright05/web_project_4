@@ -26,7 +26,7 @@ function checkInputValidity(input, form, rest) {
   }
 }
 
-function toggleButtonState(inputs, button, {inactiveButtonClass}) {
+function toggleButtonState(inputs, button, {inactiveButtonClassgit}) {
   const isValid = inputs.every((input) => input.validity.valid);
 
   if(isValid) {
