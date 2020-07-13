@@ -36,7 +36,7 @@ class Card {
 
     cardRemoveButton.addEventListener("click", () => {
       this._card.closest(".photo-grid__item").remove();
-      this._card == null;
+      this._card = null;
     })
 
     cardImage.addEventListener("click", () => {
