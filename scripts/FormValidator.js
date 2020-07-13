@@ -1,32 +1,58 @@
 class FormValidator {
-  constructor(settings, formElement) {  //what settings do we need? in validation.js enableValidation
+  //what settings do we need? in validation.js enableValidation
+  constructor(settings, formElement) {  
     this._inputSelector = settings.inputSelector;
     this._submitButtonSelector = settings.submitButtonSelector;
     this._inactiveButtonClass = settings.inactiveButtonClass;
-    this _inputErrorClass = settings.inputErrorClass;
+    this._inputErrorClass = settings.inputErrorClass;
     this._errorClass = settings.errorClass;
 
     this._formElement = formElement;
   }
 
-  _showErrorMessage() {
-
+  _showErrorMessage(inputElement, errorMessage) {
+    const error = this._formElement.querySelector(`#${inputElement.id}-error`);
+    error.textContent = errorMessage;
+  
+    error.classList.add(this._errorClass);
+    inputElement.classList.add(this._inputErrorClass);
   }
 
-  _hideErrorMessage() {
+  _hideErrorMessage(inputElement) {
+    const error = document.querySelector(`#${inputElement.id}-error`);
+    error.textContent = '';
 
+    error.classList.remove(this._errorClass);
+    input.classList.remove(this._inputErrorClass);
   }
 
-  _checkInputValidity() {
-    if (input.validity.valid) {
-      hideErrorMessage(input, form, rest);
+  _checkInputValidity(inputElement) {
+    if (inputElement.validity.valid) {
+      this._hideErrorMessage(inputElement);
     } else {
-      showErrorMessage(input, form, rest);
+      this._showErrorMessage(inputElement, inputElement.validationMessage);
     }
   }
 
-  _toggleButtonState() {
-    
+  _toggleButtonState(inputElement) {
+
+    if(inputElement.validity.valid) {
+      this._submitButtonSelector.classList.remove(this._inactiveButtonClass);
+    } else {
+      this._submitButtonSelector.classList.add(this._inactiveButtonClass);
+    }    
+  }
+
+  _setEventListeners() {
+    const inputs = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    const button = this._formElement.querySelector(this._submitButtonSelector);
+
+    inputs.forEach((inputElement) => {
+      inputElement.addEventListener('input', () => {
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState(inputs, button);
+      });
+    });
   }
 
   enableValidation() {
@@ -34,25 +60,9 @@ class FormValidator {
       evt.preventDefault()
     })
 
-    const inputs = [...form.querySelectorAll(inputSelector)];
-    const button = form.querySelector(submitButtonSelector);
-
-    this._inputSelector.addEventListener('input', () => {
-      this._checkInputValidity();
-      this._toggleButtonState(inputs, but);
-    })
+    this._setEventListeners();    
   }
 
 }
-// calls this for 2 forms - add card and edit info that wil be added to index.js
-// new FormValidator(settings, formElement) {
 
-// }
-
-formSelector: ".popup__form",
-  inputSelector: ".popup__field"
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__error",
-
-  errorClass: "popup__error_visible"
+export default FormValidator;

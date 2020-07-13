@@ -1,22 +1,22 @@
-function showErrorMessage(input, form, {errorClass, inputErrorClass}) {
-  const error = document.querySelector(`#${input.id}-error`);
-  error.textContent = input.validationMessage;
+// function showErrorMessage(input, form, {errorClass, inputErrorClass}) {
+//   const error = document.querySelector(`#${input.id}-error`);
+//   error.textContent = input.validationMessage;
 
   
-  error.classList.add(errorClass);
-  input.classList.add(inputErrorClass);
+//   error.classList.add(errorClass);
+//   input.classList.add(inputErrorClass);
   
   
-}
+// }
 
-function hideErrorMessage(input, form, {errorClass, inputErrorClass}) {
-  const error = document.querySelector(`#${input.id}-error`);
-  error.textContent = '';
+// function hideErrorMessage(input, form, {errorClass, inputErrorClass}) {
+//   const error = document.querySelector(`#${input.id}-error`);
+//   error.textContent = '';
 
-  error.classList.remove(errorClass);
-  input.classList.remove(inputErrorClass);
+//   error.classList.remove(errorClass);
+//   input.classList.remove(inputErrorClass);
 
-}
+// }
 
 function checkInputValidity(input, form, rest) {
   if (input.validity.valid) {
@@ -36,25 +36,25 @@ function toggleButtonState(inputs, button, {inactiveButtonClassgit}) {
   }
 }
 
-function enableValidation ({formSelector, inputSelector, submitButtonSelector, ...rest}) {
-  const forms = [...document.querySelectorAll(formSelector)];
+// function enableValidation ({formSelector, inputSelector, submitButtonSelector, ...rest}) {
+//   const forms = [...document.querySelectorAll(formSelector)];
 
-  forms.forEach((form) => {
-    form.addEventListener('submit', ((evt) => {
-      evt.preventDefault()
-    }))
+//   forms.forEach((form) => {
+//     form.addEventListener('submit', ((evt) => {
+//       evt.preventDefault()
+//     }))
 
-    const inputs = [...form.querySelectorAll(inputSelector)];
-    const button = form.querySelector(submitButtonSelector);
+//     const inputs = [...form.querySelectorAll(inputSelector)];
+//     const button = form.querySelector(submitButtonSelector);
 
-    inputs.forEach((input) => {
-      input.addEventListener('input', () => {
-        checkInputValidity(input, form, rest);
-        toggleButtonState(inputs, button, rest);
-      })
-    })
-  })
-}
+//     inputs.forEach((input) => {
+//       input.addEventListener('input', () => {
+//         checkInputValidity(input, form, rest);
+//         toggleButtonState(inputs, button, rest);
+//       })
+//     })
+//   })
+// }
 
 enableValidation({
   formSelector: ".popup__form",
