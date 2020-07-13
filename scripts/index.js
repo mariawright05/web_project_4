@@ -1,3 +1,4 @@
+import {togglePopup, escClose} from "./utils.js";
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 
@@ -55,14 +56,14 @@ const cardTemplateSelector = ".card-template";
 // TOGGLE FUNCTIONS
 
 // Opens or closes all popups 
-function togglePopup(modal) {
-  modal.classList.toggle("popup_opened");
-  if (modal.classList.contains("popup_opened")) {
-    document.addEventListener("keyup", escClose);
-  } else {
-    document.removeEventListener("keyup", escClose);
-  };
-};
+// function togglePopup(modal) {
+//   modal.classList.toggle("popup_opened");
+//   if (modal.classList.contains("popup_opened")) {
+//     document.addEventListener("keyup", escClose);
+//   } else {
+//     document.removeEventListener("keyup", escClose);
+//   };
+// };
 
 //Closes popup if clicked outside popup
 function closeClick() {
