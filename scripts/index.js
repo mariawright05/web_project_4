@@ -1,10 +1,10 @@
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 
+// Form definitions
 const defaultConfig = {
   inputSelector: ".popup__field",
   submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__error",
   errorClass: "popup__error_visible"
 }
@@ -15,6 +15,7 @@ const cardPopup = document.querySelector(".popup_type_add-card");
 const addCardForm = cardPopup.querySelector('.popup__form');
 const editProfileForm = profilePopup.querySelector('.popup__form');
 
+// Accesses and calls FormValidator class for both forms
 const editProfileValidation = new FormValidator(defaultConfig, editProfileForm);
 const addCardValidation = new FormValidator(defaultConfig, addCardForm);
 
@@ -22,8 +23,6 @@ editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
 
 // Wrappers
-// const profilePopup = document.querySelector(".popup_type_edit-profile");
-// const cardPopup = document.querySelector(".popup_type_add-card");
 const imagePopup = document.querySelector(".popup_type_display-image");
 const profileForm = profilePopup.querySelector(".popup__profile-wrapper");
 const cardForm = cardPopup.querySelector(".popup__card-wrapper");
@@ -47,25 +46,13 @@ const jobInput = document.querySelector(".popup__field_type_title");
 const cardTitle = cardPopup.querySelector(".popup__field_type_card-title");
 const cardLink = cardPopup.querySelector(".popup__field_type_url");
 
-// const displayImage = document.querySelector(".popup__image")
-// const displayCaption = document.querySelector(".popup__image-caption");
-
-// const cardTemplate = document.querySelector(".card-template").content.querySelector(".photo-grid__item");
+// Card elements
 const imageList = document.querySelector(".photo-grid");
-
 const cardTemplateSelector = ".card-template";
 
 
 
 // TOGGLE FUNCTIONS
-// Closes popup if esc key is pressed
-function escClose(evt) {
-  const openedPopup = document.querySelector(".popup_opened");
-
-  if (evt.key === "Escape") {
-    togglePopup(openedPopup);
-  };
-};
 
 // Opens or closes all popups 
 function togglePopup(modal) {
@@ -92,23 +79,6 @@ function closeClick() {
 
 closeClick();
 
-// Makes heart button active or non-active
-// function toggleHeart(evt){
-//   evt.target.classList.toggle('photo-grid__like_true');
-// }
-
-
-
-// DISPLAY IMAGE POPUP
-
-// Causes image to popup when clicked
-// function showImage (data) {
-//   displayImage.src = data.link;
-//   displayImage.alt = data.name;
-//   displayCaption.textContent = data.name;
-
-// }
-
 // Image popup close
 closeImageButton.addEventListener("click", () => {
   togglePopup(imagePopup);
@@ -125,6 +95,7 @@ profileForm.addEventListener("submit", (evt) => {
   profileAbout.textContent = jobInput.value;
   
   togglePopup(profilePopup);
+  
 });
 
 // Opens profile form
@@ -180,34 +151,6 @@ const initialCards = [
   }
 ];
 
-// Creates initial and new cards using card template
-// const createCard = (data) => {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardText = cardElement.querySelector(".photo-grid__title");
-//   const cardImage = cardElement.querySelector(".photo-grid__image");
-//   const cardLikeButton = cardElement.querySelector(".photo-grid__like");
-//   const cardRemoveButton = cardElement.querySelector(".photo-grid__remove");
-
-//   cardText.textContent = data.name;
-//   cardImage.style.backgroundImage = `url(${data.link})`;
-
-//   cardLikeButton.addEventListener("click", (e) => {
-//     toggleHeart(e);
-//   })
-
-//   cardRemoveButton.addEventListener("click", (e) => {
-//     e.target.closest(".photo-grid__item").remove();
-//   })
-
-
-
-//   cardImage.addEventListener("click", () => {
-//     showImage(data); 
-//     togglePopup(imagePopup); 
-//   })
-
-//   return cardElement;
-// }
 
 // Adds card to display at top of list
 const renderCard = (data) => {

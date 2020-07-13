@@ -15,6 +15,22 @@ function escClose(evt) {
   };
 };
 
+
+function showImage (link, name) {
+  const displayImage = document.querySelector(".popup__image")
+  const displayCaption = document.querySelector(".popup__image-caption");
+  const imagePopup = document.querySelector(".popup_type_display-image");
+
+  displayImage.src = link;
+  displayImage.alt = name;
+  displayCaption.textContent = name;
+
+  togglePopup(imagePopup); 
+
+}
+
+
+
 class Card {
   constructor(data, cardTemplateSelector) {
     this._link = data.link;
@@ -34,15 +50,16 @@ class Card {
   }
 
   _showImage(link, name) {
-    displayImage.src = link;
-    displayImage.alt = name;
-    displayCaption.textContent = name;
+    this._link.src = link;
+    this._link.alt = name;
+    this._name.textContent = name;
   }
 
   _addEventListeners() {
     const cardImage = this._card.querySelector(".photo-grid__image");
     const cardLikeButton = this._card.querySelector(".photo-grid__like");
     const cardRemoveButton = this._card.querySelector(".photo-grid__remove");
+
 
     cardLikeButton.addEventListener("click", (evt) => {
       this._toggleHeart(evt);
@@ -53,8 +70,7 @@ class Card {
     })
 
     cardImage.addEventListener("click", () => {
-      this._showImage(this._link, this._name); 
-      togglePopup(imagePopup); 
+      showImage(this._link, this._name); 
     })
   };
 

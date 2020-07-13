@@ -2,7 +2,6 @@ class FormValidator {
   constructor(settings, formElement) {  
     this._inputSelector = settings.inputSelector;
     this._submitButtonSelector = settings.submitButtonSelector;
-    this._inactiveButtonClass = settings.inactiveButtonClass;
     this._inputErrorClass = settings.inputErrorClass;
     this._errorClass = settings.errorClass;
 
@@ -38,10 +37,8 @@ class FormValidator {
     const isValid = inputs.every((inputElement) => inputElement.validity.valid);
 
     if(isValid) {
-      button.classList.remove(this._inactiveButtonClass);
       button.removeAttribute("disabled", "");
     } else {
-      button.classList.add(this._inactiveButtonClass);
       button.setAttribute("disabled", "");
     }    
   }
