@@ -1,4 +1,4 @@
-# Project 6: Around The U.S.
+# Project 7: Around The U.S.
 
 ## Project Link
 
@@ -11,9 +11,7 @@ This project is showcasing the knowledge learned from Practicum's class: Basic J
 It is a web page showing a user's information and photos they have uploaded from around the US. Images can be deleted, liked, and new images added.
 
 This recent updated added:
-* Form validation
-* Closing modals with esc key
-* Closing modals by clicking outside the modal
+* Refactoring of code to reflect modular JavaScript and OOP
 
 ## Technologies and Techniques Used
 
@@ -37,3 +35,5 @@ Some of the skills used are:
 * Working with Objects in JavaScript
 * Event handling
 * Form Validation
+* Object Oriented Programming
+* Modular JavaScript
