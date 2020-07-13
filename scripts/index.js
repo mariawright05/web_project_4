@@ -6,7 +6,6 @@ const defaultConfig = {
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__error",
-
   errorClass: "popup__error_visible"
 }
 
@@ -213,7 +212,7 @@ const initialCards = [
 // Adds card to display at top of list
 const renderCard = (data) => {
   const card = new Card(data, cardTemplateSelector)
-  imageList.prepend(card.generateCard);
+  imageList.prepend(card.generateCard());
 }
 
 // Adds initial cards 

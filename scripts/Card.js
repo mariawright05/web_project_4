@@ -7,6 +7,14 @@ function togglePopup(modal) {
   };
 };
 
+function escClose(evt) {
+  const openedPopup = document.querySelector(".popup_opened");
+
+  if (evt.key === "Escape") {
+    togglePopup(openedPopup);
+  };
+};
+
 class Card {
   constructor(data, cardTemplateSelector) {
     this._link = data.link;
@@ -25,6 +33,12 @@ class Card {
     return cardTemplate;
   }
 
+  _showImage(data) {
+    displayImage.src = data.link;
+    displayImage.alt = data.name;
+    displayCaption.textContent = data.name;
+  }
+
   _addEventListeners() {
     const cardImage = this._card.querySelector(".photo-grid__image");
     const cardLikeButton = this._card.querySelector(".photo-grid__like");
@@ -39,7 +53,7 @@ class Card {
     })
 
     cardImage.addEventListener("click", () => {
-      this._showImage(data); 
+      this._showImage(this._link, this._name); 
       togglePopup(imagePopup); 
     })
   };
@@ -48,16 +62,12 @@ class Card {
     evt.target.classList.toggle('photo-grid__like_true');
   }
 
-  _showImage(data) {
-    displayImage.src = data.link;
-    displayImage.alt = data.name;
-    displayCaption.textContent = data.name;
-  }
+
 
   generateCard = () => {
     const element = this._getCardTemplate();
     
-    this._card = element; 
+    this._card = this._getCardTemplate(); 
 
     this._card.querySelector('.photo-grid__title').textContent = this._name;
     this._card.querySelector('.photo-grid__image').style.backgroundImage = `url(${this._link})`;

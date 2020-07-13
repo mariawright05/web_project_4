@@ -1,5 +1,4 @@
 class FormValidator {
-  //what settings do we need? in validation.js enableValidation
   constructor(settings, formElement) {  
     this._inputSelector = settings.inputSelector;
     this._submitButtonSelector = settings.submitButtonSelector;
@@ -30,16 +29,18 @@ class FormValidator {
     if (inputElement.validity.valid) {
       this._hideErrorMessage(inputElement);
     } else {
-      this._showErrorMessage(inputElement, inputElement.validationMessage);
+      this._showErrorMessage(inputElement);
     }
   }
 
-  _toggleButtonState(inputElement) {
+  _toggleButtonState(inputs, button) {
 
-    if(inputElement.validity.valid) {
-      this._submitButtonSelector.classList.remove(this._inactiveButtonClass);
+    const isValid = inputs.every((inputElement) => inputElement.validity.valid);
+
+    if(isValid) {
+      button.classList.remove(this._inactiveButtonClass);
     } else {
-      this._submitButtonSelector.classList.add(this._inactiveButtonClass);
+      button.classList.add(this._inactiveButtonClass);
     }    
   }
 
@@ -56,9 +57,9 @@ class FormValidator {
   }
 
   enableValidation() {
-    this._formElement.addEventListener('submit', (evt) => {
+    this._formElement.addEventListener('submit', ((evt) => {
       evt.preventDefault()
-    })
+    }));
 
     this._setEventListeners();    
   }
