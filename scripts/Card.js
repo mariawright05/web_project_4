@@ -18,7 +18,7 @@ function escClose(evt) {
 class Card {
   constructor(data, cardTemplateSelector) {
     this._link = data.link;
-    this._text = data.text;
+    this._name = data.name;
 
     this._cardTemplateSelector = cardTemplateSelector;
   }
@@ -33,10 +33,10 @@ class Card {
     return cardTemplate;
   }
 
-  _showImage(data) {
-    displayImage.src = data.link;
-    displayImage.alt = data.name;
-    displayCaption.textContent = data.name;
+  _showImage(link, name) {
+    displayImage.src = link;
+    displayImage.alt = name;
+    displayCaption.textContent = name;
   }
 
   _addEventListeners() {
@@ -65,7 +65,6 @@ class Card {
 
 
   generateCard = () => {
-    const element = this._getCardTemplate();
     
     this._card = this._getCardTemplate(); 
 
