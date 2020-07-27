@@ -1,6 +1,7 @@
-import {togglePopup, escClose} from "./utils.js";
-import FormValidator from './FormValidator.js';
-import Card from './Card.js';
+import {togglePopup, escClose} from "../scripts/utils.js";
+import FormValidator from '../scripts/FormValidator.js';
+import Card from '../scripts/Card.js';
+import "./index.css";
 
 // Form definitions
 const defaultConfig = {

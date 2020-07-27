@@ -50,7 +50,7 @@ class Card {
 
 
 
-  generateCard = () => {
+  generateCard() {
     
     this._card = this._getCardTemplate(); 
 
