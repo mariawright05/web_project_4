@@ -1,11 +1,11 @@
 import {showImage} from "./utils.js";
 
 class Card {
-  constructor(data, cardTemplateSelector) {
+  constructor(data, cardTemplateSelector, handleCardClick) {
     this._link = data.link;
     this._name = data.name;
-
     this._cardTemplateSelector = cardTemplateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getCardTemplate() {

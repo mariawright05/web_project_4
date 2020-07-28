@@ -2,6 +2,7 @@ import {togglePopup, escClose} from "../scripts/utils.js";
 import FormValidator from '../scripts/FormValidator.js';
 import Card from '../scripts/Card.js';
 import "./index.css";
+import Section from "../scripts/Section.js";
 
 // Form definitions
 const defaultConfig = {
@@ -49,7 +50,7 @@ const cardTitle = cardPopup.querySelector(".popup__field_type_card-title");
 const cardLink = cardPopup.querySelector(".popup__field_type_url");
 
 // Card elements
-const imageList = document.querySelector(".photo-grid");
+const imageContainer = document.querySelector(".photo-grid");
 const cardTemplateSelector = ".card-template";
 
 
@@ -153,17 +154,26 @@ const initialCards = [
   }
 ];
 
+const imageList = new Section({
+  items: initialCards,
+  renderer: (data) => {
+    const card = new Card(
+      data, 
+      cardTemplateSelector, 
+      (item) => {imagePopup.open(item)}
+      );
+    const cardElement = card.generateCard();
+    imageList.addItem(cardElement);
+    }
+  },
+  imageContainer
+)
 
-// Adds card to display at top of list
-const renderCard = (data) => {
-  const card = new Card(data, cardTemplateSelector)
-  imageList.prepend(card.generateCard());
-}
+// Calls function from Section class to create initial list
+imageList.renderer();
 
-// Adds initial cards 
-initialCards.forEach((data) => {
-  renderCard(data);
-})
+
+
 
 // Add new card using form
 cardForm.addEventListener("submit", (evt) => {
