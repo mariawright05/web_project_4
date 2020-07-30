@@ -1,4 +1,3 @@
-import {showImage} from "./utils.js";
 
 class Card {
   constructor(data, cardTemplateSelector, handleCardClick) {
@@ -49,7 +48,6 @@ class Card {
   }
 
   _handleDeleteCard() {
-    // this._card.closest(".photo-grid__item").remove();
     this._card.remove();
     this._card = null;
   }

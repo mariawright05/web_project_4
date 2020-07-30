@@ -20,8 +20,8 @@ const defaultConfig = {
 const profilePopup = document.querySelector(".popup_type_edit-profile");
 const editButton = document.querySelector(".profile__edit-button");
 const editProfileForm = profilePopup.querySelector('.popup__form');
-const nameInput = document.querySelector(".popup__field_type_name");
-const jobInput = document.querySelector(".popup__field_type_title");
+const nameInput = document.querySelector(".profile__user-name");
+const jobInput = document.querySelector(".profile__user-about");
 
 // Add card form variables
 const cardPopup = document.querySelector(".popup_type_add-card");
@@ -100,14 +100,11 @@ imageList.renderElements();
 
 
 // ADD IMAGE FORM
-// Function handling new image form submit
-const handleNewCardSubmit = (data) => {
+// Creates image form and adds event listener to add button
+const newCardForm = new PopupWithForm(cardPopup, (data) => {
   const card = new Card(data, cardTemplateSelector, handleCardClick);
   imageList.addItem(card.generateCard());
-}
-
-// Creates image form and adds event listener to add button
-const newCardForm = new PopupWithForm(cardPopup, handleNewCardSubmit);
+});
 addButton.addEventListener("click", () => {
   newCardForm.open();
 })
@@ -124,13 +121,10 @@ addCardValidation.enableValidation();
 // Declares profile with UserInfo class
 const profile = new UserInfo(nameInput, jobInput);
 
-// Function handling new profile form submit
-const handleEditProfileSubmit = (data) => {
-  profile.setUserInfo(data);
-}
-
 // Creates profile form and adds event listener to edit button
-const profileForm = new PopupWithForm(profilePopup, handleEditProfileSubmit);
+const profileForm = new PopupWithForm(profilePopup, (data) => {
+  profile.setUserInfo(data);
+});
 editButton.addEventListener("click", () => {
   const user = profile.getUserInfo();
   nameInput.value = user.name;
