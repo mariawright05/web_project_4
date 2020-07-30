@@ -6,7 +6,7 @@ class Section {
   }
 
   // renders element on page
-  renderer() {
+  renderElements() {
     this._items.forEach((item) => this._renderer(item));
   }
 

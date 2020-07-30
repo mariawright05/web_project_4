@@ -18,6 +18,7 @@ class Card {
     return cardTemplate;
   }
 
+
   _showImage(link, name) {
     this._link.src = link;
     this._link.alt = name;
@@ -31,21 +32,26 @@ class Card {
 
 
     cardLikeButton.addEventListener("click", (evt) => {
-      this._toggleHeart(evt);
+      this._handleLikeIcon(evt);
     })
 
     cardRemoveButton.addEventListener("click", () => {
-      this._card.closest(".photo-grid__item").remove();
-      this._card = null;
+      this._handleDeleteCard();
     })
 
     cardImage.addEventListener("click", () => {
-      showImage(this._link, this._name); 
+      this._handleCardClick({link: this._link, name: this._name}); 
     })
   };
 
-  _toggleHeart(evt) {
-    evt.target.classList.toggle('photo-grid__like_true');
+  _handleLikeIcon(evt) {
+    evt.target.classList.toggle("photo-grid__like_true");
+  }
+
+  _handleDeleteCard() {
+    // this._card.closest(".photo-grid__item").remove();
+    this._card.remove();
+    this._card = null;
   }
 
 
