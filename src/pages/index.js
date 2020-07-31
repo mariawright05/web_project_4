@@ -102,7 +102,8 @@ imageList.renderElements();
 // ADD IMAGE FORM
 // Creates image form and adds event listener to add button
 const newCardForm = new PopupWithForm(cardPopup, (data) => {
-  const card = new Card(data, cardTemplateSelector, handleCardClick);
+  //change name from html
+  const card = new Card({link: data.url, name: data.title}, cardTemplateSelector, handleCardClick);
   imageList.addItem(card.generateCard());
 });
 addButton.addEventListener("click", () => {
