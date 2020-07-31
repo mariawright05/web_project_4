@@ -1,4 +1,4 @@
-# Project 7: Around The U.S.
+# Project 8: Around The U.S.
 
 ## Project Link
 
@@ -6,16 +6,17 @@
 
 ## Project Description
 
-This project is showcasing the knowledge learned from Practicum's class: Basic JavaScript and Working with the Browser.
+This project is showcasing the knowledge learned from Practicum's classes: Basic JavaScript and Applied JavaScript.
 
 It is a web page showing a user's information and photos they have uploaded from around the US. Images can be deleted, liked, and new images added.
 
 This recent updated added:
+* Building a project with Webpack
 * Refactoring of code to reflect modular JavaScript and OOP
 
 ## Technologies and Techniques Used
 
-This web page was created with HTML, CSS, and JavaScript and made adaptive to different screen sizes as a culmination of the skills learned in Basic JavaScript and Working with the Browser.
+This web page was created with HTML, CSS, and JavaScript and made adaptive to different screen sizes as a culmination of the skills learned in Basic JavaScript and Applied Javascript. It was also built using Webpack and Babel.
 
 Some of the skills used are:
 
@@ -37,3 +38,4 @@ Some of the skills used are:
 * Form Validation
 * Object Oriented Programming
 * Modular JavaScript
+* Installation of Webpack and Babel
