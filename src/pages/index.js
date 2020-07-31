@@ -13,7 +13,7 @@ const defaultConfig = {
   submitButtonSelector: ".popup__button",
   inputErrorClass: "popup__error",
   errorClass: "popup__error_visible"
-}
+};
 
 // FORM VARIABLES
 // Profile variables 
@@ -80,7 +80,7 @@ popupWithImage.setEventListeners();
 // Function opening card when clicked
 const handleCardClick = (card) => {
   popupWithImage.open(card);
-}
+};
 
 // Creates section for images
 const imageList = new Section({
@@ -92,7 +92,7 @@ const imageList = new Section({
     }
   },
   imageContainer
-)
+);
 
 // Creates initial image list
 imageList.renderElements();
@@ -107,7 +107,7 @@ const newCardForm = new PopupWithForm(cardPopup, (data) => {
 });
 addButton.addEventListener("click", () => {
   newCardForm.open();
-})
+});
 
 // Sets event listeners to open form
 newCardForm.setEventListeners();
@@ -130,7 +130,7 @@ editButton.addEventListener("click", () => {
   nameInput.value = user.name;
   jobInput.value = user.title;
   profileForm.open();
-})
+});
 
 // Sets event listeners to open form
 profileForm.setEventListeners();

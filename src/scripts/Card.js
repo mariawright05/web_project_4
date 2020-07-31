@@ -1,4 +1,3 @@
-
 class Card {
   constructor(data, cardTemplateSelector, handleCardClick) {
     this._link = data.link;
@@ -14,14 +13,7 @@ class Card {
       .querySelector(".photo-grid__item")
       .cloneNode(true);
 
-    return cardTemplate;
-  }
-
-
-  _showImage(link, name) {
-    this._link.src = link;
-    this._link.alt = name;
-    this._name.textContent = name;
+      return cardTemplate;
   }
 
   _addEventListeners() {
@@ -39,7 +31,7 @@ class Card {
     })
 
     cardImage.addEventListener("click", () => {
-      this._handleCardClick({link: this._link, name: this._name}); 
+      this._handleCardClick({ name: this._name, link: this._link }); 
     })
   };
 
