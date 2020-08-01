@@ -4,7 +4,7 @@
   "description": "## Project Link",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf": "^3.0.2",
+    "build": "rimraf",
     "dev": "webpack-dev-server --open --watch"
   },
   "repository": {
@@ -37,6 +37,6 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "corejs": "^1.0.0",
+    "corejs": "^1.0.0"
   }
 }
