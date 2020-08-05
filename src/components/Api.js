@@ -28,13 +28,13 @@ class Api {
 
   // POST https://around.nomoreparties.co/v1/groupId/cards
   addCard({ title, url }) {
-    console.log(this._baseUrl + '/cards');
+    console.log(title, url);
     return fetch(this._baseUrl + '/cards', {
       headers: this._headers,
       method: "POST",
       body: JSON.stringify({
-        title, 
-        url
+        name: title, 
+        link: url
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
