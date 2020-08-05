@@ -1,10 +1,13 @@
-import FormValidator from '../scripts/FormValidator.js';
-import Card from '../scripts/Card.js';
-import Section from "../scripts/Section.js";
-import PopupWithImage from "../scripts/PopupWithImage";
-import PopupWithForm from "../scripts/PopupWithForm.js";
-import UserInfo from "../scripts/UserInfo";
+import FormValidator from '../components/FormValidator.js';
+import Card from '../components/Card.js';
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo";
+import Api from "../components/Api";
 import "./index.css";
+
+
 
 
 // Form definitions
@@ -83,44 +86,89 @@ const handleCardClick = (card) => {
 };
 
 // Creates section for images
-const imageList = new Section({
-  items: initialCards,
-  renderer: (data) => {
-    const card = new Card(data, cardTemplateSelector, handleCardClick);
-    const cardElement = card.generateCard();
-    imageList.addItem(cardElement);
-    }
-  },
-  imageContainer
-);
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-3",
+  headers: {
+    authorization: "5707ddd2-2e4a-4b11-a4a0-b8d42848d184",
+    "Content-Type": "application/json"
+  }
+});
 
-// Creates initial image list
-imageList.renderElements();
+api.getCardList()
+.then(res => {
+  const imageList = new Section({
+    items: res,
+    renderer: (data) => {
+      const card = new Card(data, cardTemplateSelector, handleCardClick);
+      const cardElement = card.generateCard();
+      imageList.addItem(cardElement);
+      }
+    },
+    imageContainer
+  );
+
+  // Creates initial image list
+  imageList.renderElements();
+
+  const newCardForm = new PopupWithForm(cardPopup, (data) => {
+
+    api.addCard(data);
+  
+    //change name from html
+    const card = new Card({link: data.url, name: data.title}, cardTemplateSelector, handleCardClick);
+    imageList.addItem(card.generateCard());
+  });
+
+  addButton.addEventListener("click", () => {
+    newCardForm.open();
+  });
+
+  // Sets event listeners to open form
+  newCardForm.setEventListeners();
+
+  // Calls FormValidator for add card form
+  addCardValidation.enableValidation();
+})
+
+// Declares profile with UserInfo class
+const profile = new UserInfo(nameInput, jobInput);
+
+api.getUserInfo()
+  .then(res => {
+    profile.setUserInfo({ name: res.name, title: res.about });
+  })
+
+
+
+
+
 
 
 
 // ADD IMAGE FORM
 // Creates image form and adds event listener to add button
-const newCardForm = new PopupWithForm(cardPopup, (data) => {
-  //change name from html
-  const card = new Card({link: data.url, name: data.title}, cardTemplateSelector, handleCardClick);
-  imageList.addItem(card.generateCard());
-});
-addButton.addEventListener("click", () => {
-  newCardForm.open();
-});
+// const newCardForm = new PopupWithForm(cardPopup, (data) => {
 
-// Sets event listeners to open form
-newCardForm.setEventListeners();
+//   api.addCard(data);
 
-// Calls FormValidator for add card form
-addCardValidation.enableValidation();
+//   //change name from html
+//   const card = new Card({link: data.url, name: data.title}, cardTemplateSelector, handleCardClick);
+//   imageList.addItem(card.generateCard());
+// });
+// addButton.addEventListener("click", () => {
+//   newCardForm.open();
+// });
+
+// // Sets event listeners to open form
+// newCardForm.setEventListeners();
+
+// // Calls FormValidator for add card form
+// addCardValidation.enableValidation();
 
 
 
 // PROFILE FORM
-// Declares profile with UserInfo class
-const profile = new UserInfo(nameInput, jobInput);
+
 
 // Creates profile form and adds event listener to edit button
 const profileForm = new PopupWithForm(profilePopup, (data) => {

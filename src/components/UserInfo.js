@@ -9,9 +9,9 @@ class UserInfo {
     return this._userData;
   }
 
-  setUserInfo(data) {
-    this._name.textContent = data.name;
-    this._title.textContent = data.title;
+  setUserInfo({ name, title }) {
+    this._name.textContent = name;
+    this._title.textContent = title;
   }
 
 }
