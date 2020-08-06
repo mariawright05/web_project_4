@@ -7,17 +7,6 @@ import UserInfo from "../components/UserInfo";
 import Api from "../components/Api";
 import "./index.css";
 
-
-
-
-// Form definitions
-const defaultConfig = {
-  inputSelector: ".popup__field",
-  submitButtonSelector: ".popup__button",
-  inputErrorClass: "popup__error",
-  errorClass: "popup__error_visible"
-};
-
 // FORM VARIABLES
 // Profile variables 
 const profilePopup = document.querySelector(".popup_type_edit-profile");
@@ -35,6 +24,13 @@ const addCardForm = cardPopup.querySelector('.popup__form');
 const editProfileValidation = new FormValidator(defaultConfig, editProfileForm);
 const addCardValidation = new FormValidator(defaultConfig, addCardForm);
 
+// Form definitions
+const defaultConfig = {
+  inputSelector: ".popup__field",
+  submitButtonSelector: ".popup__button",
+  inputErrorClass: "popup__error",
+  errorClass: "popup__error_visible"
+};
 
 
 // IMAGE CARD VARIABLES
@@ -45,39 +41,8 @@ const cardTemplateSelector = ".card-template";
 // Image popup
 const imagePopup = document.querySelector(".popup_type_display-image");
 
-// Initial card data
-const initialCards = [
-  {
-      name: "Yosemite Valley",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-  },
-  {
-      name: "Lake Louise",
-      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-  },
-  {
-      name: "Bald Mountains",
-      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-  },
-  {
-      name: "Latemar",
-      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-  },
-  {
-      name: "Vanois National Park",
-      link: "https://code.s3.yandex.net/web-code/vanois.jpg"
-  },
-  {
-      name: "Lago di Braies",
-      link: "https://code.s3.yandex.net/web-code/lago.jpg"
-  }
-];
 
-
-
-
-
-// Initializes Api class and adds user group and auth token
+// INIT API CLASS AND ADD USER GROUP AND AUTH TOKEN
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-3",
   headers: {
@@ -88,7 +53,7 @@ const api = new Api({
 
 
 // IMAGE CARDS
-// Gets initial card list
+// Get initial card list
 api.getCardList()
 .then(res => {
   const imageList = new Section({
@@ -102,54 +67,52 @@ api.getCardList()
     imageContainer
   );
 
-  // Renders initial cards
+  // Render initial cards
   imageList.renderElements();
 
 
-  // Opens new card form
+  // Open new card form
   const newCardForm = new PopupWithForm(cardPopup, (data) => {
 
-  // Creates new card from form and adds to the list
+  // Create new card from form and add to the list
   api.addCard(data);
     const card = new Card({link: data.url, name: data.title}, cardTemplateSelector, handleCardClick);
     imageList.addItem(card.generateCard());
   });
 
-  // Adds event listener for add card button and opens form upon click
+  // Add event listener for add card button and open form upon click
   addButton.addEventListener("click", () => {
     newCardForm.open();
   });
 
-  // Sets event listeners to open form
+  // Set event listeners to open form
   newCardForm.setEventListeners();
 
-  // Calls FormValidator for add card form
+  // Call FormValidator for add card form
   addCardValidation.enableValidation();
 })
 
-// Creates new image popup and sets card event listeners
+// Create new image popup and set card event listeners
 const popupWithImage = new PopupWithImage(imagePopup);
 popupWithImage.setEventListeners();
 
-// Opens card on click
+// Open card on click
 const handleCardClick = (card) => {
   popupWithImage.open(card);
 };
 
 
 // PROFILE FORM
-
-// Declares profile with UserInfo class
+// Declare profile with UserInfo class
 const profile = new UserInfo(nameInput, jobInput);
 
-// Gets user info from server and adds to profile
+// Get user info from server and adds to profile
 api.getUserInfo()
   .then(res => {
     profile.setUserInfo({ name: res.name, title: res.about });
   })
 
-
-// Creates profile form and adds event listener to edit button
+// Create profile form and adds event listener to edit button
 const profileForm = new PopupWithForm(profilePopup, (data) => {
   profile.setUserInfo(data);
 });
@@ -160,8 +123,8 @@ editButton.addEventListener("click", () => {
   profileForm.open();
 });
 
-// Sets event listeners to open form
+// Set event listeners to open form
 profileForm.setEventListeners();
 
-// Calls FormValidator for profile form
+// Call FormValidator for profile form
 editProfileValidation.enableValidation();

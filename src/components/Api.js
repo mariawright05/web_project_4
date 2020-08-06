@@ -4,6 +4,7 @@ class Api {
     this._headers = headers;
   }
 
+  // 2. Loads cards from the server
   // GET https://around.nomoreparties.co/v1/groupId/cards
   getCardList() {
     return fetch(this._baseUrl + '/cards', {
@@ -13,6 +14,7 @@ class Api {
     .catch(err => console.log(err))
   }
 
+  // 1. Loads user info from the server
   // GET https://around.nomoreparties.co/v1/groupId/users/me
   getUserInfo() {
     return fetch(this._baseUrl + '/users/me', {
@@ -22,10 +24,7 @@ class Api {
     .catch(err => console.log(err))
   }
 
-  getAppInfo() {
-    // wait from results from last 2 functions, then render all of them together
-  }
-
+  // 4. Adds new card to server from add card form
   // POST https://around.nomoreparties.co/v1/groupId/cards
   addCard({ title, url }) {
     console.log(title, url);
@@ -41,28 +40,39 @@ class Api {
     .catch(err => console.log(err));
   }
 
+  // 6. Create a Popup for deleting a card (not here)
+  // Also make trash icon appear only on my cards (not here)
+
+  // 7. Delete a card from server
   // 33:30
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
-  // removeCard(cardID) {
-  //   return fetch(this._baseUrl + '/cards/', {
-  //     headers: this._headers,
-  //     method: "DELETE",
-  //   })
-  //   .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-  //   .catch(err => console.log(err))
-  // }
+  removeCard(cardID) {
+    return fetch(this._baseUrl + '/cards/', {
+      headers: this._headers,
+      method: "DELETE",
+    })
+    .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
+    .catch(err => console.log(err))
+  }
 
+  // 5. Show how many likes a card has (not here)
+
+  // 8. Add and remove likes
   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
   changeLikeCardStatus(cardID, like) {
 
   }
 
-    // PATCH https://around.nomoreparties.co/v1/groupId/users/me
+  // 3. Adds user info to the server from edit user form
+  // PATCH https://around.nomoreparties.co/v1/groupId/users/me
   setUserInfo({ name, about }) {
 
   }
 
+  // Add form to update profile picture (not here)
+
+  // 9. Add profile picture to server
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
   setUserAvatar({ avatar }) {
 
