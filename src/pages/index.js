@@ -59,10 +59,16 @@ api.getCardList()
   const imageList = new Section({
     items: res,
     renderer: (data) => {
-      const card = new Card(data, cardTemplateSelector, handleCardClick);
+      const card = new Card(
+        { data, 
+        handleCardClick,
+        handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) },
+        cardTemplateSelector
+      );
+      imageList.addItem(card.generateCard());
       const cardElement = card.generateCard();
       imageList.addItem(cardElement);
-      }
+    }
     },
     imageContainer
   );
@@ -74,9 +80,14 @@ api.getCardList()
   // Open new card form
   const newCardForm = new PopupWithForm(cardPopup, (data) => {
 
-  // Create new card from form and add to the list
-  api.addCard(data);
-    const card = new Card({link: data.url, name: data.title}, cardTemplateSelector, handleCardClick);
+    // Create new card from form and add to the list
+    api.addCard(data);
+    const card = new Card(
+      { data, 
+      handleCardClick,
+      handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) },
+      cardTemplateSelector
+    );
     imageList.addItem(card.generateCard());
   });
 
