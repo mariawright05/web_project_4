@@ -75,17 +75,9 @@ const initialCards = [
 
 
 
-// IMAGE CARDS
-// Creates new image popup and sets event listeners
-const popupWithImage = new PopupWithImage(imagePopup);
-popupWithImage.setEventListeners();
 
-// Function opening card when clicked
-const handleCardClick = (card) => {
-  popupWithImage.open(card);
-};
 
-// Creates section for images
+// Initializes Api class and adds user group and auth token
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-3",
   headers: {
@@ -94,6 +86,9 @@ const api = new Api({
   }
 });
 
+
+// IMAGE CARDS
+// Gets initial card list
 api.getCardList()
 .then(res => {
   const imageList = new Section({
@@ -107,18 +102,20 @@ api.getCardList()
     imageContainer
   );
 
-  // Creates initial image list
+  // Renders initial cards
   imageList.renderElements();
 
+
+  // Opens new card form
   const newCardForm = new PopupWithForm(cardPopup, (data) => {
 
-    api.addCard(data);
-  
-    //change name from html
+  // Creates new card from form and adds to the list
+  api.addCard(data);
     const card = new Card({link: data.url, name: data.title}, cardTemplateSelector, handleCardClick);
     imageList.addItem(card.generateCard());
   });
 
+  // Adds event listener for add card button and opens form upon click
   addButton.addEventListener("click", () => {
     newCardForm.open();
   });
@@ -130,44 +127,26 @@ api.getCardList()
   addCardValidation.enableValidation();
 })
 
+// Creates new image popup and sets card event listeners
+const popupWithImage = new PopupWithImage(imagePopup);
+popupWithImage.setEventListeners();
+
+// Opens card on click
+const handleCardClick = (card) => {
+  popupWithImage.open(card);
+};
+
+
+// PROFILE FORM
+
 // Declares profile with UserInfo class
 const profile = new UserInfo(nameInput, jobInput);
 
+// Gets user info from server and adds to profile
 api.getUserInfo()
   .then(res => {
     profile.setUserInfo({ name: res.name, title: res.about });
   })
-
-
-
-
-
-
-
-
-// ADD IMAGE FORM
-// Creates image form and adds event listener to add button
-// const newCardForm = new PopupWithForm(cardPopup, (data) => {
-
-//   api.addCard(data);
-
-//   //change name from html
-//   const card = new Card({link: data.url, name: data.title}, cardTemplateSelector, handleCardClick);
-//   imageList.addItem(card.generateCard());
-// });
-// addButton.addEventListener("click", () => {
-//   newCardForm.open();
-// });
-
-// // Sets event listeners to open form
-// newCardForm.setEventListeners();
-
-// // Calls FormValidator for add card form
-// addCardValidation.enableValidation();
-
-
-
-// PROFILE FORM
 
 
 // Creates profile form and adds event listener to edit button
