@@ -1,15 +1,17 @@
 class Card {
-  constructor({ data, handleCardClick, handleDeleteClick }, cardTemplateSelector) {
+  constructor({ data, handleCardClick, handleDeleteClick },cardTemplateSelector) {
     this._link = data.link;
     this._name = data.name;
-    this._id = data.id;
+    this._id = data._id;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     this._cardTemplateSelector = cardTemplateSelector;
+    this._element = this._getCardTemplate;
   }
 
   id() {
-    return this._id();
+    // this._handleCardDelete();
+    return this._id;
   }
 
   _getCardTemplate() {
@@ -27,28 +29,19 @@ class Card {
     const cardLikeButton = this._card.querySelector(".photo-grid__like");
     const cardRemoveButton = this._card.querySelector(".photo-grid__remove");
 
-
-    cardLikeButton.addEventListener("click", (evt) => {
-      this._handleLikeIcon(evt);
-    })
-
-    cardRemoveButton.addEventListener("click", () => {
-      this._handleDeleteClick();
-    })
-
-    cardImage.addEventListener("click", () => {
-      this._handleCardClick({ name: this._name, link: this._link }); 
-    })
+    cardLikeButton.addEventListener("click", (evt) => this._handleLikeIcon(evt));
+    cardRemoveButton.addEventListener("click", () => this._handleDeleteClick(this._id));
+    cardImage.addEventListener("click", () => this._handleCardClick({ 
+      name: this._name, 
+      link: this._link 
+    }));
   };
 
   _handleLikeIcon(evt) {
     evt.target.classList.toggle("photo-grid__like_true");
   }
 
-  _handleDeleteCard() {
-    this._card.remove();
-    this._card = null;
-  }
+
 
 
 

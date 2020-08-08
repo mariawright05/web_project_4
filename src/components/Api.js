@@ -44,16 +44,21 @@ class Api {
   // Also make trash icon appear only on my cards (not here)
 
   // 7. Delete a card from server
-  // 33:30
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
   removeCard(cardID) {
     return fetch(this._baseUrl + '/cards/' + cardID, {
       headers: this._headers,
       method: "DELETE",
     })
+    // .then(console.log(cardID))
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
     .catch(err => console.log(err))
   }
+
+  // _handleCardDelete() {
+  //   this._card.remove();
+  //   this._card = null;
+  // }
 
   // 5. Show how many likes a card has (not here)
 

@@ -20,10 +20,6 @@ const cardPopup = document.querySelector(".popup_type_add-card");
 const addButton = document.querySelector(".profile__add-button");
 const addCardForm = cardPopup.querySelector('.popup__form');
 
-// Form Validator variables
-const editProfileValidation = new FormValidator(defaultConfig, editProfileForm);
-const addCardValidation = new FormValidator(defaultConfig, addCardForm);
-
 // Form definitions
 const defaultConfig = {
   inputSelector: ".popup__field",
@@ -31,6 +27,12 @@ const defaultConfig = {
   inputErrorClass: "popup__error",
   errorClass: "popup__error_visible"
 };
+
+// Form Validator variables
+const editProfileValidation = new FormValidator(defaultConfig, editProfileForm);
+const addCardValidation = new FormValidator(defaultConfig, addCardForm);
+
+
 
 
 // IMAGE CARD VARIABLES
@@ -59,12 +61,17 @@ api.getCardList()
   const imageList = new Section({
     items: res,
     renderer: (data) => {
-      const card = new Card(
-        { data, 
-        handleCardClick,
-        handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) },
-        cardTemplateSelector
-      );
+      const card = new Card({
+        data, 
+        handleCardClick: () => {
+          popupWithImage.open({ data });
+        },
+        handleDeleteClick: (id) => {
+
+          api.removeCard(id);
+        }
+      }, cardTemplateSelector);
+
       imageList.addItem(card.generateCard());
       const cardElement = card.generateCard();
       imageList.addItem(cardElement);
@@ -82,12 +89,16 @@ api.getCardList()
 
     // Create new card from form and add to the list
     api.addCard(data);
-    const card = new Card(
-      { data, 
-      handleCardClick,
-      handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) },
-      cardTemplateSelector
-    );
+    const card = new Card({
+      data, 
+      handleCardClick: () => {
+        popupWithImage.open({ data });
+      },
+      handleDeleteClick: (id) => {
+
+        api.removeCard(id);
+      }
+    }, cardTemplateSelector);
     imageList.addItem(card.generateCard());
   });
 
@@ -107,10 +118,7 @@ api.getCardList()
 const popupWithImage = new PopupWithImage(imagePopup);
 popupWithImage.setEventListeners();
 
-// Open card on click
-const handleCardClick = (card) => {
-  popupWithImage.open(card);
-};
+
 
 
 // PROFILE FORM
