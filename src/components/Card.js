@@ -1,8 +1,8 @@
 class Card {
-  constructor({ data, handleCardClick,  }, cardTemplateSelector) {
+  constructor({ data, handleCardClick }, cardTemplateSelector) {
     this._link = data.link;
     this._name = data.name;
-    this._id = data.id;
+    // this._id = data.id;
     this._handleCardClick = handleCardClick;
     // this._handleDeleteClick = handleDeleteClick;
     this._cardTemplateSelector = cardTemplateSelector;
@@ -33,7 +33,7 @@ class Card {
     })
 
     cardRemoveButton.addEventListener("click", () => 
-      this._handleDeleteClick());
+      this._handleDeleteCard());
 
     cardImage.addEventListener("click", () => {
       this._handleCardClick({ name: this._name, link: this._link }); 
