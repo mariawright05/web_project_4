@@ -64,7 +64,8 @@ api.getCardList()
       const card = new Card({
         data, 
         handleCardClick,
-        handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) },
+        // handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) 
+      },
         cardTemplateSelector
       );
       imageList.addItem(card.generateCard());
@@ -85,7 +86,8 @@ api.getCardList()
     const card = new Card(
       { data, 
       handleCardClick,
-      handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) },
+      // handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) 
+    },
       cardTemplateSelector
     );
     imageList.addItem(card.generateCard());
