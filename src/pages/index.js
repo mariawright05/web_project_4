@@ -68,12 +68,9 @@ api.getCardList()
         cardTemplateSelector
       );
       imageList.addItem(card.generateCard());
-      const cardElement = card.generateCard();
-      imageList.addItem(cardElement);
     }
-    },
-    imageContainer
-  );
+  },
+  imageContainer);
 
   // Render initial cards
   imageList.renderElements();
@@ -84,6 +81,7 @@ api.getCardList()
 
     // Create new card from form and add to the list
     api.addCard(data);
+    console.log(api.addCard);
     const card = new Card(
       { data, 
       handleCardClick,
