@@ -63,15 +63,10 @@ api.getCardList()
     renderer: (data) => {
       const card = new Card({
         data, 
-        handleCardClick: () => {
-          popupWithImage.open({ data });
-        },
-        handleDeleteClick: (id) => {
-
-          api.removeCard(id);
-        }
-      }, cardTemplateSelector);
-
+        handleCardClick,
+        handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) },
+        cardTemplateSelector
+      );
       imageList.addItem(card.generateCard());
       const cardElement = card.generateCard();
       imageList.addItem(cardElement);
@@ -89,16 +84,12 @@ api.getCardList()
 
     // Create new card from form and add to the list
     api.addCard(data);
-    const card = new Card({
-      data, 
-      handleCardClick: () => {
-        popupWithImage.open({ data });
-      },
-      handleDeleteClick: (id) => {
-
-        api.removeCard(id);
-      }
-    }, cardTemplateSelector);
+    const card = new Card(
+      { data, 
+      handleCardClick,
+      handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) },
+      cardTemplateSelector
+    );
     imageList.addItem(card.generateCard());
   });
 
@@ -118,7 +109,10 @@ api.getCardList()
 const popupWithImage = new PopupWithImage(imagePopup);
 popupWithImage.setEventListeners();
 
-
+// Open card on click
+const handleCardClick = (card) => {
+  popupWithImage.open(card);
+};
 
 
 // PROFILE FORM
