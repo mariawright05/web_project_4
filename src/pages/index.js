@@ -20,10 +20,6 @@ const cardPopup = document.querySelector(".popup_type_add-card");
 const addButton = document.querySelector(".profile__add-button");
 const addCardForm = cardPopup.querySelector('.popup__form');
 
-// Form Validator variables
-const editProfileValidation = new FormValidator(defaultConfig, editProfileForm);
-const addCardValidation = new FormValidator(defaultConfig, addCardForm);
-
 // Form definitions
 const defaultConfig = {
   inputSelector: ".popup__field",
@@ -31,6 +27,12 @@ const defaultConfig = {
   inputErrorClass: "popup__error",
   errorClass: "popup__error_visible"
 };
+
+// Form Validator variables
+const editProfileValidation = new FormValidator(defaultConfig, editProfileForm);
+const addCardValidation = new FormValidator(defaultConfig, addCardForm);
+
+
 
 
 // IMAGE CARD VARIABLES
@@ -59,13 +61,17 @@ api.getCardList()
   const imageList = new Section({
     items: res,
     renderer: (data) => {
-      const card = new Card(data, cardTemplateSelector, handleCardClick);
-      const cardElement = card.generateCard();
-      imageList.addItem(cardElement);
-      }
-    },
-    imageContainer
-  );
+      const card = new Card({
+        data, 
+        handleCardClick,
+        // handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) 
+      },
+        cardTemplateSelector
+      );
+      imageList.addItem(card.generateCard());
+    }
+  },
+  imageContainer);
 
   // Render initial cards
   imageList.renderElements();
@@ -74,9 +80,16 @@ api.getCardList()
   // Open new card form
   const newCardForm = new PopupWithForm(cardPopup, (data) => {
 
-  // Create new card from form and add to the list
-  api.addCard(data);
-    const card = new Card({link: data.url, name: data.title}, cardTemplateSelector, handleCardClick);
+    // Create new card from form and add to the list
+    api.addCard(data);
+    console.log(api.addCard);
+    const card = new Card(
+      { data, 
+      handleCardClick,
+      // handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) 
+    },
+      cardTemplateSelector
+    );
     imageList.addItem(card.generateCard());
   });
 
