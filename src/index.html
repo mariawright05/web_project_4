@@ -20,7 +20,7 @@
 
       <section class="profile">
         <div class="profile__user-container">
-          <img class="profile__user-avatar" src="./images/avatar.jpg" alt="Jacques Cousteau avatar">
+          <img class="profile__user-avatar" src="" alt="">
           <div class="profile__user-info">
             <h1 class="profile__user-name"></h1>
             <p class="profile__user-about"></p>
@@ -56,6 +56,22 @@
           <div class="popup__label">
             <input id="profile-title" type="text" name="title" class="popup__field popup__field_type_title" placeholder="About me" required minlength="2" maxlength="200">
             <span id="profile-title-error" class="popup__error"></span>
+          </div>
+        </fieldset>
+        <input type="submit" class="popup__button" value="Save" disabled>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_edit-avatar">
+    <div class="popup__container popup__avatar-wrapper">
+      <button class="popup__close-button"></button>
+      <form action="#" class="popup__form">
+        <h3 class="popup__heading">Change profile picture</h3>
+        <fieldset class="popup__info">
+          <div class="popup__label">
+            <input id="profile-avatar" type="url" name="url" class="popup__field popup__field_type_url" placeholder="Profile picture URL" required>
+            <span id="profile-avatar-error" class="popup__error"></span>
           </div>
         </fieldset>
         <input type="submit" class="popup__button" value="Save" disabled>

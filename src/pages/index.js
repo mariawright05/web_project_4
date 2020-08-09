@@ -16,6 +16,12 @@ const editProfileForm = profilePopup.querySelector('.popup__form');
 const nameInput = document.querySelector(".profile__user-name");
 const jobInput = document.querySelector(".profile__user-about");
 
+// Avatar variables
+const avatarPopup = document.querySelector(".popup_type_edit-avatar");
+const editAvatarButton = document.querySelector(".avatar__edit-button");
+const editAvatarForm = avatarPopup.querySelector(".popup__form");
+const linkInput = document.querySelector(".profile__user-avatar")
+
 // Add card form variables
 const cardPopup = document.querySelector(".popup_type_add-card");
 const addButton = document.querySelector(".profile__add-button");
@@ -34,6 +40,7 @@ const defaultConfig = {
 // Form Validator variables
 const editProfileValidation = new FormValidator(defaultConfig, editProfileForm);
 const addCardValidation = new FormValidator(defaultConfig, addCardForm);
+const avatarCardValidations = new FormValidator(defaultConfig, editAvatarForm);
 
 
 

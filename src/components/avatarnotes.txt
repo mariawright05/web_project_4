@@ -1,0 +1,15 @@
+popup_type_edit-profile -> popup_type_edit-avatar
+popup__profile-wrapper -> popup__avatar-wrapper
+
+<input id="profile-name" type="text" name="name" 
+  class="popup__field popup__field_type_name" 
+  placeholder="Name" required minlength="2" maxlength="40">
+
+<input id="profile-avatar" type="url" name="url" 
+  class="popup__field popup__field_type_url" 
+  placeholder="Profile picture URL" required>
+
+id = profile-name-error, profile-title-error -> profile-avatar-error
+
+profile__edit-button? This will be in hover
+change to avatar__edit-button and add CSS block
