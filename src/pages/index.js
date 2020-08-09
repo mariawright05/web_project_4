@@ -19,6 +19,8 @@ const jobInput = document.querySelector(".profile__user-about");
 const cardPopup = document.querySelector(".popup_type_add-card");
 const addButton = document.querySelector(".profile__add-button");
 const addCardForm = cardPopup.querySelector('.popup__form');
+const url = addCardForm.querySelector('.popup__field_type_url');
+const title = addCardForm.querySelector('.popup__field_type_card-title');
 
 // Form definitions
 const defaultConfig = {
@@ -63,12 +65,13 @@ api.getCardList()
     renderer: (data) => {
       const card = new Card({
         data, 
-        handleCardClick,
+        handleCardClick}, 
         // handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) 
-      },
+      
         cardTemplateSelector
       );
-      imageList.addItem(card.generateCard());
+      const cardElement = card.generateCard();
+      imageList.addItem(cardElement);
     }
   },
   imageContainer);
@@ -82,16 +85,20 @@ api.getCardList()
 
     // Create new card from form and add to the list
     api.addCard(data);
-    console.log(api.addCard);
-    const card = new Card(
-      { data, 
-      handleCardClick,
+    console.log(data);
+
+    const card = new Card({
+      data: {link: url.value, name: title.value}, 
+      handleCardClick},
       // handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) 
-    },
+    
       cardTemplateSelector
     );
     imageList.addItem(card.generateCard());
+    console.log(card);
+
   });
+
 
   // Add event listener for add card button and open form upon click
   addButton.addEventListener("click", () => {

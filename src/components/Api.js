@@ -38,6 +38,7 @@ class Api {
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
     .catch(err => console.log(err));
+    
   }
 
   // 6. Create a Popup for deleting a card (not here)
@@ -72,7 +73,16 @@ class Api {
   // 3. Adds user info to the server from edit user form
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me
   setUserInfo({ name, about }) {
-
+    return fetch(this._baseUrl + '/users/me', {
+      headers: this._headers,
+      method: "PATCH",
+      body: JSON.stringify({
+        name, 
+        about
+      })
+    })
+    .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
+    .catch(err => console.log(err));
   }
 
   // Add form to update profile picture (not here)
