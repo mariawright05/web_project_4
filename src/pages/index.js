@@ -154,3 +154,39 @@ api.getUserInfo()
   // Call FormValidator for profile form
   editProfileValidation.enableValidation();
 })
+
+// USER AVATAR
+// Create edit button on hover (html, css)
+// Create avatarForm with popupWithForm and call api.setUserAvatar({ avatar })
+// Add event listener to edit button
+// Set event listener to avatarForm to open
+// Call FormValidator for avatar form
+
+
+// const avatarPopup = document.querySelector(".popup_type_edit-avatar");
+// const editAvatarButton = document.querySelector(".avatar__edit-button");
+// const editAvatarForm = avatarPopup.querySelector(".popup__form");
+// const linkInput = document.querySelector(".profile__user-avatar")
+
+
+
+// NOT MINE
+// const avatarEditForm = new PopupWithForm({popupSelector: avatarPopout, formSubmission: () =>{
+//   setButtonText(avatarPopout, "Saving")
+//   avatar.src = avatarLink.value;
+//   api.setUserAvatar({avatar: avatarLink.value});
+//   setButtonText(avatarPopout, "Save")
+// }})
+// avatarEditForm.setEventListeners();
+// const avatarValidator = new FormValidator(defaultConfig, avatarFormElement)
+// avatarValidator.enableValidation();
+
+// avatarEdit.addEventListener("click", ()=> toggleModal(avatarPopout));
+
+// const profileValidator = new FormValidator(defaultConfig, profileFormElement);
+// const galleryValidator = new FormValidator(defaultConfig, galleryFormElement);
+// profileValidator.enableValidation();
+// galleryValidator.enableValidation();
+
+// const imagePopup = new PopupWithImage(picturePopout);
+// imagePopup.setEventListeners();
