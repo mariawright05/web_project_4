@@ -4,12 +4,12 @@ class UserInfo {
     this._title = jobInput;
   }
 
-  getUserInfo() {
+  getUserInfor() {
     this._userData = {name:this._name.textContent,  title:this._title.textContent};
     return this._userData;
   }
 
-  setUserInfo({ name, title }) {
+  setUserInfor({ name, title }) {
     this._name.textContent = name;
     this._title.textContent = title;
   }

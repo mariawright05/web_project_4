@@ -6,6 +6,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo";
 import Api from "../components/Api";
 import "./index.css";
+import { name } from 'file-loader';
 
 // FORM VARIABLES
 // Profile variables 
@@ -120,30 +121,29 @@ const handleCardClick = (card) => {
 
 
 // PROFILE FORM
-// Declare profile with UserInfo class
-const profile = new UserInfo(nameInput, jobInput);
-
-// Get user info from server and adds to profile
+// Get profile from server
 api.getUserInfo()
-  .then(res => {
-    profile.setUserInfo({ name: res.name, title: res.about });
-  })
+.then(res => {
+  // Declare profile with UserInfo class
+  const profile = new UserInfo(nameInput, jobInput);
+  profile.setUserInfor({ name: res.name, title: res.about });
 
-// Create profile form and adds event listener to edit button
-const profileForm = new PopupWithForm(profilePopup, (data) => {
-  profile.setUserInfo(data);
-});
+  //Create profile form and adds event listener to edit button
+  const profileForm = new PopupWithForm(profilePopup, (data) => {
+    api.setUserInfo(data);
+    profile.setUserInfor(data);
+  });
+    
+  editButton.addEventListener("click", () => {
+    const user = profile.getUserInfor();
+    nameInput.value = user.name;
+    jobInput.value = user.title;
+    profileForm.open();
+  });
+    
+  // Set event listeners to open form
+  profileForm.setEventListeners();
 
-
-editButton.addEventListener("click", () => {
-  const user = profile.getUserInfo();
-  nameInput.value = user.name;
-  jobInput.value = user.title;
-  profileForm.open();
-});
-
-// Set event listeners to open form
-profileForm.setEventListeners();
-
-// Call FormValidator for profile form
-editProfileValidation.enableValidation();
+  // Call FormValidator for profile form
+  editProfileValidation.enableValidation();
+})

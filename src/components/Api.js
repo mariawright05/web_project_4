@@ -71,13 +71,13 @@ class Api {
 
   // 3. Adds user info to the server from edit user form
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me
-  setUserInfo({ name, about }) {
+  setUserInfo({ name, title }) {
     return fetch(this._baseUrl + '/users/me', {
       headers: this._headers,
       method: "PATCH",
       body: JSON.stringify({
-        name, 
-        about
+        name: name, 
+        about: title
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
