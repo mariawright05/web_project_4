@@ -27,7 +27,6 @@ class Api {
   // 4. Adds new card to server from add card form
   // POST https://around.nomoreparties.co/v1/groupId/cards
   addCard({ title, url }) {
-    console.log(title, url);
     return fetch(this._baseUrl + '/cards', {
       headers: this._headers,
       method: "POST",
@@ -46,8 +45,8 @@ class Api {
 
   // 7. Delete a card from server
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
-  removeCard(cardID) {
-    return fetch(this._baseUrl + '/cards/' + cardID, {
+  removeCard(cardId) {
+    return fetch(this._baseUrl + '/cards/' + cardId, {
       headers: this._headers,
       method: "DELETE",
     })

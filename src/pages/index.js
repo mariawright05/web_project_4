@@ -65,9 +65,9 @@ api.getCardList()
     renderer: (data) => {
       const card = new Card({
         data, 
-        handleCardClick}, 
-        // handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) 
-      
+        handleCardClick, 
+        handleDeleteClick: ((cardID) => {api.removeCard(cardID)})}, 
+
         cardTemplateSelector
       );
       const cardElement = card.generateCard();
@@ -85,17 +85,14 @@ api.getCardList()
 
     // Create new card from form and add to the list
     api.addCard(data);
-    console.log(data);
 
     const card = new Card({
       data: {link: url.value, name: title.value}, 
-      handleCardClick},
-      // handleDeleteClick: ((cardID) => {api.removeCard(cardID)}) 
-    
+      handleCardClick,
+      handleDeleteClick: ((cardId) => {api.removeCard(cardId)})},
       cardTemplateSelector
     );
     imageList.addItem(card.generateCard());
-    console.log(card);
 
   });
 
@@ -136,6 +133,8 @@ api.getUserInfo()
 const profileForm = new PopupWithForm(profilePopup, (data) => {
   profile.setUserInfo(data);
 });
+
+
 editButton.addEventListener("click", () => {
   const user = profile.getUserInfo();
   nameInput.value = user.name;

@@ -1,16 +1,17 @@
 class Card {
-  constructor({ data, handleCardClick }, cardTemplateSelector) {
+  constructor({ data, handleCardClick, handleDeleteClick }, cardTemplateSelector) {
     this._link = data.link;
     this._name = data.name;
-    // this._id = data.id;
+    this._id = data.cardId;
     this._handleCardClick = handleCardClick;
-    // this._handleDeleteClick = handleDeleteClick;
+    this._handleDeleteClick = handleDeleteClick;
     this._cardTemplateSelector = cardTemplateSelector;
   }
 
   id() {
     return this._id();
-  }
+  } 
+
 
   _getCardTemplate() {
     const cardTemplate = document
