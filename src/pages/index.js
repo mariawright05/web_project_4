@@ -12,7 +12,7 @@ import { name } from 'file-loader';
 // Profile variables 
 const profilePopup = document.querySelector(".popup_type_edit-profile");
 const editButton = document.querySelector(".profile__edit-button");
-const editProfileForm = profilePopup.querySelector('.popup__form');
+const editProfileForm = profilePopup.querySelector(".popup__form");
 const nameInput = document.querySelector(".profile__user-name");
 const jobInput = document.querySelector(".profile__user-about");
 
