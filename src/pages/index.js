@@ -156,9 +156,16 @@ api.getUserInfo()
 })
 
 // USER AVATAR
-// Create edit button on hover (html, css)
 // Create avatarForm with popupWithForm and call api.setUserAvatar({ avatar })
+const avatarForm = new PopupWithForm(avatarPopup, (data) => {
+  api.setUserAvatar(data);
+
+
+})
 // Add event listener to edit button
+editAvatarButton.addEventListener("click", () => {
+  const user=
+})
 // Set event listener to avatarForm to open
 // Call FormValidator for avatar form
 

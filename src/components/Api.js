@@ -89,7 +89,15 @@ class Api {
   // 9. Add profile picture to server
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
   setUserAvatar({ avatar }) {
-
+    return fetch(this._baseURL + 'users/me/avatar', {
+      headers: this._headers,
+      method: "PATCH",
+      body: JSON.stringify({
+        avatar
+      })
+    })
+    .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
+    .catch(err => console.log(err));
   }
 }
 
