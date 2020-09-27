@@ -18,9 +18,9 @@ const jobInput = document.querySelector(".profile__user-about");
 
 // Avatar variables
 const avatarPopup = document.querySelector(".popup_type_edit-avatar");
-const editAvatarButton = document.querySelector(".avatar__edit-button");
+const editAvatarButton = document.querySelector(".profile__user-avatar_overlay");
 const editAvatarForm = avatarPopup.querySelector(".popup__form");
-const linkInput = document.querySelector(".profile__user-avatar")
+const avatarInput = document.querySelector(".profile__user-avatar")
 
 // Add card form variables
 const cardPopup = document.querySelector(".popup_type_add-card");
@@ -40,7 +40,7 @@ const defaultConfig = {
 // Form Validator variables
 const editProfileValidation = new FormValidator(defaultConfig, editProfileForm);
 const addCardValidation = new FormValidator(defaultConfig, addCardForm);
-const avatarCardValidations = new FormValidator(defaultConfig, editAvatarForm);
+const avatarCardValidation = new FormValidator(defaultConfig, editAvatarForm);
 
 
 
@@ -62,7 +62,6 @@ const api = new Api({
     "Content-Type": "application/json"
   }
 });
-
 
 // IMAGE CARDS
 // Get initial card list
@@ -127,73 +126,48 @@ const handleCardClick = (card) => {
 };
 
 
-// PROFILE FORM
+// PROFILE & AVATAR FORMS
 // Get profile from server
 api.getUserInfo()
 .then(res => {
   // Declare profile with UserInfo class
-  const profile = new UserInfo(nameInput, jobInput);
-  profile.setUserInfor({ name: res.name, title: res.about });
+  const profile = new UserInfo(nameInput, jobInput, avatarInput);
+  profile.setUserTextInfo({ name: res.name, title: res.about, avatar: res.avatar });
 
-  //Create profile form and adds event listener to edit button
+  // Create profile form and add event listener to edit button
   const profileForm = new PopupWithForm(profilePopup, (data) => {
     api.setUserInfo(data);
-    profile.setUserInfor(data);
+    profile.setUserTextInfo(data);
   });
     
   editButton.addEventListener("click", () => {
-    const user = profile.getUserInfor();
+    const user = profile.getUserTextInfo();
     nameInput.value = user.name;
     jobInput.value = user.title;
     profileForm.open();
   });
-    
-  // Set event listeners to open form
-  profileForm.setEventListeners();
 
-  // Call FormValidator for profile form
+  // Create avatar form and add event listener to editAvatarButton
+  const avatarForm = new PopupWithForm(avatarPopup, (data) => {
+    api.setUserAvatar(data);
+    profile.setUserAvatarInfo(data);
+  });
+
+  editAvatarButton.addEventListener("click", () => {
+    const userAvatar = profile.getUserAvatarInfo();
+    avatarInput.value = userAvatar.avatar;
+    avatarForm.open();
+  });
+    
+  // Set event listeners to open forms
+  profileForm.setEventListeners();
+  avatarForm.setEventListeners()
+
+  // Call FormValidator for forms
   editProfileValidation.enableValidation();
+  avatarCardValidation.enableValidation();
+
 })
 
 // USER AVATAR
-// Create avatarForm with popupWithForm and call api.setUserAvatar({ avatar })
-const avatarForm = new PopupWithForm(avatarPopup, (data) => {
-  api.setUserAvatar(data);
-
-
-})
-// Add event listener to edit button
-editAvatarButton.addEventListener("click", () => {
-  const user=
-})
-// Set event listener to avatarForm to open
-// Call FormValidator for avatar form
-
-
-// const avatarPopup = document.querySelector(".popup_type_edit-avatar");
-// const editAvatarButton = document.querySelector(".avatar__edit-button");
-// const editAvatarForm = avatarPopup.querySelector(".popup__form");
-// const linkInput = document.querySelector(".profile__user-avatar")
-
-
-
-// NOT MINE
-// const avatarEditForm = new PopupWithForm({popupSelector: avatarPopout, formSubmission: () =>{
-//   setButtonText(avatarPopout, "Saving")
-//   avatar.src = avatarLink.value;
-//   api.setUserAvatar({avatar: avatarLink.value});
-//   setButtonText(avatarPopout, "Save")
-// }})
-// avatarEditForm.setEventListeners();
-// const avatarValidator = new FormValidator(defaultConfig, avatarFormElement)
-// avatarValidator.enableValidation();
-
-// avatarEdit.addEventListener("click", ()=> toggleModal(avatarPopout));
-
-// const profileValidator = new FormValidator(defaultConfig, profileFormElement);
-// const galleryValidator = new FormValidator(defaultConfig, galleryFormElement);
-// profileValidator.enableValidation();
-// galleryValidator.enableValidation();
-
-// const imagePopup = new PopupWithImage(picturePopout);
-// imagePopup.setEventListeners();
+// Get avatar from server

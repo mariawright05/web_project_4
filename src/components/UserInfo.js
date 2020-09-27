@@ -1,17 +1,27 @@
 class UserInfo {
-  constructor(nameInput, jobInput) {
+  constructor(nameInput, jobInput, avatarInput) {
     this._name = nameInput;
     this._title = jobInput;
+    this._avatar = avatarInput;
   }
 
-  getUserInfor() {
+  getUserTextInfo() {
     this._userData = {name:this._name.textContent,  title:this._title.textContent};
     return this._userData;
   }
 
-  setUserInfor({ name, title }) {
+  setUserTextInfo({ name, title }) {
     this._name.textContent = name;
     this._title.textContent = title;
+  }
+
+  getUserAvatarInfo() {
+    this._userImage = {avatar:this._avatar.textContent}
+    return this._userImage;
+  }
+
+  setUserAvatarInfo ({ avatar }) {
+    this._avatar = avatar;
   }
 
 }
