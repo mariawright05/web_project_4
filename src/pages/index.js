@@ -16,6 +16,7 @@ const editProfileForm = profilePopup.querySelector(".popup__form");
 const nameInput = document.querySelector(".profile__user-name");
 const jobInput = document.querySelector(".profile__user-about");
 
+
 // Avatar variables
 const avatarPopup = document.querySelector(".popup_type_edit-avatar");
 const editAvatarButton = document.querySelector(".profile__user-avatar_overlay");
@@ -67,7 +68,7 @@ const api = new Api({
 // Get initial card list
 api.getCardList()
 .then(res => {
-  console.log(res);
+  const currentUser = nameInput.textContent;
   const imageList = new Section({
     items: res,
     renderer: (data) => {
@@ -75,7 +76,7 @@ api.getCardList()
         data, 
         handleCardClick, 
         handleDeleteClick: ((cardID) => {api.removeCard(cardID)})}, 
-
+        currentUser,
         cardTemplateSelector
       );
       const cardElement = card.generateCard();
@@ -95,9 +96,10 @@ api.getCardList()
     api.addCard(data);
 
     const card = new Card({
-      data: {link: url.value, name: title.value}, 
+      data: {link: url.value, name: title.value, owner: owner.name}, 
       handleCardClick,
-      handleDeleteClick: ((cardId) => {api.removeCard(cardId)})},
+      handleDeleteClick: ((cardId) => {api.removeCard(cardId)}),
+      userName},
       cardTemplateSelector
     );
     imageList.addItem(card.generateCard());
@@ -151,9 +153,9 @@ api.getUserInfo()
 
   // Create avatar form and add event listener to editAvatarButton
   const avatarForm = new PopupWithForm(avatarPopup, (res) => {
-    api.setUserAvatar(res.url);
-    res.avatar = res.url;
-    delete res.url;
+    api.setUserAvatar(res.avatar);
+    // res.avatar = res.url;
+    // delete res.url;
     profile.setUserAvatarInfo(res);
   });
 
@@ -172,4 +174,6 @@ api.getUserInfo()
   avatarCardValidation.enableValidation();
 
 })
+
+
 
