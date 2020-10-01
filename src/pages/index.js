@@ -133,8 +133,8 @@ api.getUserInfo()
 .then(res => {
   // Declare profile with UserInfo class
   const profile = new UserInfo(nameInput, jobInput, avatarInput);
-  profile.setUserTextInfo({ name: res.name, title: res.about });
-  profile.setUserAvatarInfo({ avatar: res.avatar });
+  profile.setUserTextInfo({ name:res.name, title:res.about });
+  profile.setUserAvatarInfo({ avatar:res.avatar });
 
   // Create profile form and add event listener to edit button
   const profileForm = new PopupWithForm(profilePopup, (data) => {
@@ -150,9 +150,11 @@ api.getUserInfo()
   });
 
   // Create avatar form and add event listener to editAvatarButton
-  const avatarForm = new PopupWithForm(avatarPopup, (avatar) => {
-    api.setUserAvatar(avatar);
-    profile.setUserAvatarInfo(avatar);
+  const avatarForm = new PopupWithForm(avatarPopup, (res) => {
+    api.setUserAvatar(res.url);
+    res.avatar = res.url;
+    delete res.url;
+    profile.setUserAvatarInfo(res);
   });
 
   editAvatarButton.addEventListener("click", () => {
