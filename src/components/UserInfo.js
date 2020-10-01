@@ -5,6 +5,7 @@ class UserInfo {
     this._avatar = avatarInput;
   }
 
+
   getUserTextInfo() {
     this._userData = {name:this._name.textContent,  title:this._title.textContent};
     return this._userData;
@@ -16,14 +17,15 @@ class UserInfo {
   }
 
   getUserAvatarInfo() {
-    this._userImage = {avatar:this._avatar.textContent}
+    this._userImage = {avatar:this._avatar.src};
     return this._userImage;
   }
 
   setUserAvatarInfo ({ avatar }) {
-    this._avatar = avatar;
+    this._avatar.src = avatar;
   }
 
 }
+
 
 export default UserInfo;

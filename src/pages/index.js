@@ -56,9 +56,9 @@ const imagePopup = document.querySelector(".popup_type_display-image");
 
 // INIT API CLASS AND ADD USER GROUP AND AUTH TOKEN
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/group-3",
+  baseUrl: "https://around.nomoreparties.co/v1/group-5",
   headers: {
-    authorization: "5707ddd2-2e4a-4b11-a4a0-b8d42848d184",
+    authorization: "095d2fb7-24e6-4afa-94ea-68b60bd7e290",
     "Content-Type": "application/json"
   }
 });
@@ -67,6 +67,7 @@ const api = new Api({
 // Get initial card list
 api.getCardList()
 .then(res => {
+  console.log(res);
   const imageList = new Section({
     items: res,
     renderer: (data) => {
@@ -132,7 +133,8 @@ api.getUserInfo()
 .then(res => {
   // Declare profile with UserInfo class
   const profile = new UserInfo(nameInput, jobInput, avatarInput);
-  profile.setUserTextInfo({ name: res.name, title: res.about, avatar: res.avatar });
+  profile.setUserTextInfo({ name: res.name, title: res.about });
+  profile.setUserAvatarInfo({ avatar: res.avatar });
 
   // Create profile form and add event listener to edit button
   const profileForm = new PopupWithForm(profilePopup, (data) => {
@@ -148,14 +150,14 @@ api.getUserInfo()
   });
 
   // Create avatar form and add event listener to editAvatarButton
-  const avatarForm = new PopupWithForm(avatarPopup, (data) => {
-    api.setUserAvatar(data);
-    profile.setUserAvatarInfo(data);
+  const avatarForm = new PopupWithForm(avatarPopup, (avatar) => {
+    api.setUserAvatar(avatar);
+    profile.setUserAvatarInfo(avatar);
   });
 
   editAvatarButton.addEventListener("click", () => {
-    const userAvatar = profile.getUserAvatarInfo();
-    avatarInput.value = userAvatar.avatar;
+    const user = profile.getUserAvatarInfo();
+    avatarInput.value = user.avatar;
     avatarForm.open();
   });
     
@@ -169,5 +171,3 @@ api.getUserInfo()
 
 })
 
-// USER AVATAR
-// Get avatar from server

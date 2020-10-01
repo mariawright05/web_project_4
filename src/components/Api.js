@@ -84,16 +84,15 @@ class Api {
     .catch(err => console.log(err));
   }
 
-  // Add form to update profile picture (not here)
 
   // 9. Add profile picture to server
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
-  setUserAvatar({ avatar }) {
-    return fetch(this._baseURL + 'users/me/avatar', {
+  setUserAvatar({ url }) {
+    return fetch(this._baseUrl + '/users/me/avatar', {
       headers: this._headers,
       method: "PATCH",
       body: JSON.stringify({
-        avatar
+        avatar: url
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
@@ -103,10 +102,3 @@ class Api {
 
 export default Api;
 
-// const api = new Api({
-//   baseUrl: "https://around.nomoreparties.co/v1/group-3",
-//   headers: {
-//     authorization: "5707ddd2-2e4a-4b11-a4a0-b8d42848d184",
-//     "Content-Type": "application/json"
-//   }
-// });

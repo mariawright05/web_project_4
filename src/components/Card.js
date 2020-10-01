@@ -2,14 +2,14 @@ class Card {
   constructor({ data, handleCardClick, handleDeleteClick }, cardTemplateSelector) {
     this._link = data.link;
     this._name = data.name;
-    this._id = data.cardId;
+    this._id = data._id;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     this._cardTemplateSelector = cardTemplateSelector;
   }
 
   id() {
-    return this._id();
+    return this._id;
   } 
 
 
@@ -33,8 +33,11 @@ class Card {
       this._handleLikeIcon(evt);
     })
 
-    cardRemoveButton.addEventListener("click", () => 
-      this._handleDeleteCard());
+    cardRemoveButton.addEventListener("click", () => {
+      this._handleDeleteClick(this.id());
+      this._card.remove();
+      this._card.null;
+    });
 
     cardImage.addEventListener("click", () => {
       this._handleCardClick({ name: this._name, link: this._link }); 
@@ -45,10 +48,10 @@ class Card {
     evt.target.classList.toggle("photo-grid__like_true");
   }
 
-  _handleDeleteCard() {
-    this._card.remove();
-    this._card = null;
-  }
+  // _handleDeleteCard() {
+  //   this._card.remove();
+  //   this._card = null;
+  // }
 
 
 
