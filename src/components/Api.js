@@ -26,7 +26,7 @@ class Api {
 
   // 4. Adds new card to server from add card form
   // POST https://around.nomoreparties.co/v1/groupId/cards
-  addCard({ title, url }) {
+  addCard({ title, url, }) {
     return fetch(this._baseUrl + '/cards', {
       headers: this._headers,
       method: "POST",

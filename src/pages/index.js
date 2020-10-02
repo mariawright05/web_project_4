@@ -87,6 +87,7 @@ api.getCardList()
 
   // Render initial cards
   imageList.renderElements();
+  console.log(imageList);
 
 
   // Open new card form
@@ -96,10 +97,10 @@ api.getCardList()
     api.addCard(data);
 
     const card = new Card({
-      data: {link: url.value, name: title.value, owner: owner.name}, 
+      data: { link:url.value, name:title.value }, 
       handleCardClick,
-      handleDeleteClick: ((cardId) => {api.removeCard(cardId)}),
-      userName},
+      handleDeleteClick: ((cardId) => {api.removeCard(cardId)})},
+      currentUser,
       cardTemplateSelector
     );
     imageList.addItem(card.generateCard());
