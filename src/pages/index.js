@@ -73,7 +73,7 @@ api.getCardList()
     items: res,
     renderer: (data) => {
       const card = new Card({
-        data, 
+        data: { link: data.link, name: data.name, id: data._id, owner: data.owner.name }, 
         handleCardClick, 
         handleDeleteClick: ((cardID) => {api.removeCard(cardID)})}, 
         currentUser,
