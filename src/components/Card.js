@@ -4,7 +4,7 @@ class Card {
   constructor({ data, handleCardClick, handleDeleteClick }, currentUser, cardTemplateSelector) {
     this._link = data.link;
     this._name = data.name;
-    this._id = data.id;
+    this._id = data._id;
     this._owner = data.owner;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
