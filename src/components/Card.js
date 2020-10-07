@@ -1,14 +1,14 @@
 import { data } from "autoprefixer";
 
 class Card {
-  constructor({ data, handleCardClick, handleDeleteClick }, currentUser, cardTemplateSelector) {
+  constructor({ data, handleCardClick, handleDeleteClick }, userId, cardTemplateSelector) {
     this._link = data.link;
     this._name = data.name;
     this._id = data._id;
-    this._owner = data.owner.name;
+    this._owner = data.owner;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
-    this._currentUser = currentUser;
+    this._userId = userId;
     this._cardTemplateSelector = cardTemplateSelector;
   }
 
@@ -54,7 +54,7 @@ class Card {
 
   _deleteRemoveButton() {
     const cardRemoveButton = this._card.querySelector(".photo-grid__remove");
-    if (this._currentUser != this._owner) {
+    if (this._userId != this._owner._id) {
       cardRemoveButton.remove();
     }
   }

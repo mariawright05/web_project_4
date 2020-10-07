@@ -108,76 +108,78 @@ api.getUserInfo()
   editProfileValidation.enableValidation();
   avatarCardValidation.enableValidation();
 
+  return res._id;
 })
+.then(userId => {
+  // IMAGE CARDS
+  // Get initial card list
+  api.getCardList()
+  .then(res => {
+    const currentUser = nameInput.textContent;
+    const imageList = new Section({
+      items: res,
+      renderer: (data) => {
+        const card = new Card({
+          data, 
+          handleCardClick, 
+          handleDeleteClick: ((cardId) => {api.removeCard(cardId)})}, 
+          userId,
+          cardTemplateSelector
+        );
+        const cardElement = card.generateCard();
+        imageList.addItem(cardElement);
+      }
+    },
+    imageContainer);
+
+    // Render initial cards
+    imageList.renderElements();
+
+
+    // Open new card form
+    const newCardForm = new PopupWithForm(cardPopup, (data) => {
+
+      // Create new card from form and add to the list
+      api.addCard(data)
+      .then(res => {
+        const card = new Card({
+          data: res, 
+          handleCardClick,
+          handleDeleteClick: ((cardId) => {api.removeCard(cardId)})},
+          userId,
+          cardTemplateSelector
+        );
+        imageList.addItem(card.generateCard());
+      })
+      
+
+    });
+
+
+    // Add event listener for add card button and open form upon click
+    addButton.addEventListener("click", () => {
+      newCardForm.open();
+    });
+
+    // Set event listeners to open form
+    newCardForm.setEventListeners();
+
+    // Call FormValidator for add card form
+    addCardValidation.enableValidation();
+  })
+
+  // Create new image popup and set card event listeners
+  const popupWithImage = new PopupWithImage(imagePopup);
+  popupWithImage.setEventListeners();
+
+  // Open card on click
+  const handleCardClick = (card) => {
+    popupWithImage.open(card);
+  };
+
+  })
 
 
 
-
-
-// IMAGE CARDS
-// Get initial card list
-api.getCardList()
-.then(res => {
-  const currentUser = nameInput.textContent;
-  const imageList = new Section({
-    items: res,
-    renderer: (data) => {
-      const card = new Card({
-        data, 
-        handleCardClick, 
-        handleDeleteClick: ((cardId) => {api.removeCard(cardId)})}, 
-        currentUser,
-        cardTemplateSelector
-      );
-      const cardElement = card.generateCard();
-      imageList.addItem(cardElement);
-    }
-  },
-  imageContainer);
-
-  // Render initial cards
-  imageList.renderElements();
-
-
-  // Open new card form
-  const newCardForm = new PopupWithForm(cardPopup, (data) => {
-
-    // Create new card from form and add to the list
-    api.addCard(data)
-    .then(res => {
-      const card = new Card({
-        data: res, 
-        handleCardClick,
-        handleDeleteClick: ((cardId) => {api.removeCard(cardId)})},
-        currentUser,
-        cardTemplateSelector
-      );
-      imageList.addItem(card.generateCard());
-    })
-    
-
-  });
-
-
-  // Add event listener for add card button and open form upon click
-  addButton.addEventListener("click", () => {
-    newCardForm.open();
-  });
-
-  // Set event listeners to open form
-  newCardForm.setEventListeners();
-
-  // Call FormValidator for add card form
-  addCardValidation.enableValidation();
-})
-
-// Create new image popup and set card event listeners
-const popupWithImage = new PopupWithImage(imagePopup);
-popupWithImage.setEventListeners();
-
-// Open card on click
-const handleCardClick = (card) => {
-  popupWithImage.open(card);
-};
 
 
