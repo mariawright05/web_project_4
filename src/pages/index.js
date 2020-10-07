@@ -123,7 +123,7 @@ api.getCardList()
     items: res,
     renderer: (data) => {
       const card = new Card({
-        data: { link: data.link, name: data.name, id: data._id, owner: data.owner.name }, 
+        data, 
         handleCardClick, 
         handleDeleteClick: ((cardId) => {api.removeCard(cardId)})}, 
         currentUser,

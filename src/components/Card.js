@@ -5,7 +5,7 @@ class Card {
     this._link = data.link;
     this._name = data.name;
     this._id = data._id;
-    this._owner = data.owner;
+    this._owner = data.owner.name;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     this._currentUser = currentUser;
