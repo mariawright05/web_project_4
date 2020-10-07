@@ -21,6 +21,14 @@ class PopupWithForm extends Popup {
     this._form.reset();
   }
 
+  resetButtonText() {
+    const button = this._form.querySelector(".popup__button");
+
+    if (button.value === "Saving...") {
+      button.value = "Save" 
+    }
+  }
+
   _getInputValues() {
     this._inputList = this._form.querySelectorAll(".popup__field");
 

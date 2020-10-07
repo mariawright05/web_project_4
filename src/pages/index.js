@@ -35,8 +35,7 @@ const defaultConfig = {
   inputSelector: ".popup__field",
   submitButtonSelector: ".popup__button",
   inputErrorClass: "popup__error",
-  errorClass: "popup__error_visible",
-  buttonClickText: submitButtonSelector.value,
+  errorClass: "popup__error_visible"
 };
 
 // Form Validator variables
@@ -84,26 +83,26 @@ api.getUserInfo()
     const user = profile.getUserTextInfo();
     nameInput.value = user.name;
     jobInput.value = user.title;
+    profileForm.resetButtonText();
     profileForm.open();
   });
 
   // Create avatar form and add event listener to editAvatarButton
   const avatarForm = new PopupWithForm(avatarPopup, (res) => {
     api.setUserAvatar(res.avatar);
-    // res.avatar = res.url;
-    // delete res.url;
     profile.setUserAvatarInfo(res);
   });
 
   editAvatarButton.addEventListener("click", () => {
     const user = profile.getUserAvatarInfo();
     avatarInput.value = user.avatar;
+    avatarForm.resetButtonText();
     avatarForm.open();
   });
     
   // Set event listeners to open forms
   profileForm.setEventListeners();
-  avatarForm.setEventListeners()
+  avatarForm.setEventListeners();
 
   // Call FormValidator for forms
   editProfileValidation.enableValidation();
@@ -177,7 +176,8 @@ api.getUserInfo()
 
 
     // Add event listener for add card button and open form upon click
-    addButton.addEventListener("click", () => {
+    addButton.addEventListener("click", (evt) => {
+      newCardForm.resetButtonText();
       newCardForm.open();
     });
 

@@ -4,7 +4,6 @@ class FormValidator {
     this._submitButtonSelector = settings.submitButtonSelector;
     this._inputErrorClass = settings.inputErrorClass;
     this._errorClass = settings.errorClass;
-    this._buttonClickText = settings.buttonClickText;
 
     this._formElement = formElement;
   }
@@ -57,15 +56,22 @@ class FormValidator {
     });
   }
 
+  // resetButtonText() {
+  //   const button = this._formElement.querySelector(this._submitButtonSelector);
+
+  //   if (button.value === "Saving...") {
+  //     button.value = "Save"
+  //   }
+  // }
+
   enableValidation() {
-    const button = this._formElement.querySelector(this._submitButtonSelector);
 
     this._formElement.addEventListener('submit', ((evt) => {
+      evt.submitter.value = "Saving...";
       evt.preventDefault();
-      button.value = "Saving...";
     }));
 
-    this._setEventListeners();    
+    this._setEventListeners();
   }
 
 }
