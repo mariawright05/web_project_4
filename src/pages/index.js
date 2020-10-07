@@ -35,7 +35,8 @@ const defaultConfig = {
   inputSelector: ".popup__field",
   submitButtonSelector: ".popup__button",
   inputErrorClass: "popup__error",
-  errorClass: "popup__error_visible"
+  errorClass: "popup__error_visible",
+  buttonClickText: submitButtonSelector.value,
 };
 
 // Form Validator variables
@@ -115,7 +116,6 @@ api.getUserInfo()
   // Get initial card list
   api.getCardList()
   .then(res => {
-    const currentUser = nameInput.textContent;
     const imageList = new Section({
       items: res,
       renderer: (data) => {
