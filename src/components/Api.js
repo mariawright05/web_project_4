@@ -50,7 +50,6 @@ class Api {
       headers: this._headers,
       method: "DELETE",
     })
-    // .then(console.log(cardID))
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
     .catch(err => console.log(err))
   }
@@ -65,7 +64,7 @@ class Api {
   // 8. Add and remove likes
   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  changeLikeCardStatus(cardID, like) {
+  changeLikeCardStatus(cardId, like) {
 
   }
 
