@@ -27,8 +27,8 @@ const avatarInput = document.querySelector(".profile__user-avatar")
 const cardPopup = document.querySelector(".popup_type_add-card");
 const addButton = document.querySelector(".profile__add-button");
 const addCardForm = cardPopup.querySelector('.popup__form');
-const url = addCardForm.querySelector('.popup__field_type_url');
-const title = addCardForm.querySelector('.popup__field_type_card-title');
+// const url = addCardForm.querySelector('.popup__field_type_url');
+// const title = addCardForm.querySelector('.popup__field_type_card-title');
 
 // Form definitions
 const defaultConfig = {
@@ -43,7 +43,7 @@ const editProfileValidation = new FormValidator(defaultConfig, editProfileForm);
 const addCardValidation = new FormValidator(defaultConfig, addCardForm);
 const avatarCardValidation = new FormValidator(defaultConfig, editAvatarForm);
 
-
+const deleteCardPopup = document.querySelector(".popup_type_delete-card");
 
 
 // IMAGE CARD VARIABLES
@@ -122,7 +122,17 @@ api.getUserInfo()
         const card = new Card({
           data, 
           handleCardClick, 
-          handleDeleteClick: ((cardId) => {api.removeCard(cardId)})}, 
+          handleDeleteClick: ((cardId) => {
+            deleteForm.open(cardId);
+            deleteForm.setSubmitAction(() => {
+              api.removeCard(cardId).then(() => {
+                card.deleteCard();
+                deleteForm.close();
+              })
+            })
+            // api.removeCard(cardId);
+
+          })}, 
           userId,
           cardTemplateSelector
         );
@@ -145,7 +155,17 @@ api.getUserInfo()
         const card = new Card({
           data: res, 
           handleCardClick,
-          handleDeleteClick: ((cardId) => {api.removeCard(cardId)})},
+          handleDeleteClick: ((cardId) => {
+            deleteForm.open(cardId);
+            deleteForm.setSubmitAction(() => {
+              api.removeCard(cardId).then(() => {
+                card.deleteCard();
+                deleteForm.close();
+              })
+            })
+            // api.removeCard(cardId);
+
+          })},
           userId,
           cardTemplateSelector
         );
@@ -177,7 +197,11 @@ api.getUserInfo()
     popupWithImage.open(card);
   };
 
-  })
+  const deleteForm = new PopupWithForm(deleteCardPopup)
+  deleteForm.setEventListeners();
+  
+
+})
 
 
 

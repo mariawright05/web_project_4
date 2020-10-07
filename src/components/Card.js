@@ -35,18 +35,21 @@ class Card {
 
     cardLikeButton.addEventListener("click", (evt) => {
       this._handleLikeIcon(evt);
-    })
+    });
 
     cardRemoveButton.addEventListener("click", () => {
       this._handleDeleteClick(this.id());
-      this._card.remove();
-      this._card.null;
     });
 
     cardImage.addEventListener("click", () => {
       this._handleCardClick({ name: this._name, link: this._link }); 
     })
   };
+
+  deleteCard() {
+    this._card.remove();
+    this._card.null;
+  }
 
   _handleLikeIcon(evt) {
     evt.target.classList.toggle("photo-grid__like_true");
