@@ -2,7 +2,9 @@
 @import url('./__image/photo-grid__image.css');
 @import url('./__title-container/photo-grid__title-container.css');
 @import url('./__title/photo-grid__title.css');
+@import url('./__like-wrapper/photo-grid__like-wrapper.css');
 @import url('./__like/photo-grid__like.css');
+@import url('./__like-count/photo-grid__like-count.css');
 @import url('./__remove/photo-grid__remove.css');
 @import url('./__like/_true/photo-grid__like_true.css');
 

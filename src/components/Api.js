@@ -40,9 +40,6 @@ class Api {
     
   }
 
-  // 6. Create a Popup for deleting a card (not here)
-  // Also make trash icon appear only on my cards (not here)
-
   // 7. Delete a card from server
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
   removeCard(cardId) {
@@ -53,13 +50,6 @@ class Api {
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
     .catch(err => console.log(err))
   }
-
-  // _handleCardDelete() {
-  //   this._card.remove();
-  //   this._card = null;
-  // }
-
-  // 5. Show how many likes a card has (not here)
 
   // 8. Add and remove likes
   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId

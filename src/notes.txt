@@ -1,0 +1,57 @@
+Send a PUT request to like a card:
+
+PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId 
+
+To remove the like, simply send a DELETE request with the same URL:
+
+DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId 
+
+cardId in the URL should be replaced with the _id property of the corresponding card.
+
+The response will contain updated JSON with a card. Inside this JSON, the array of likes will already be updated.
+
+After adding or removing a like, the heart icon should change color, and the like counter should increase or decrease respectively.
+To change the number of likes, you'll either add or subtract 1 from the current number. We recommend taking this number from the server's response, and not from the HTML code. Otherwise, there will be an error if two users try to like one card at the same time.
+
+cardLikeButton 
+-assigned to HTML element
+-event listener added
+-on click handleLikeIcon is called and passes evt
+-evt.target.classList.toggle("photo-grid__like_true)
+
+
+____________
+=>create number under likes in html - html
+
+--Must happen first, the rest will go in Card Class:
+**get the card info from server - api.getCardList();
+
+1. load number of likes for each card - pass to Card class
+* Likes are in the card array: Card num in array -> likes array (get length) -> likes -> likes num in array -> _id (user who liked)
+* Array.length
+
+2. insert that number into the class for this in html - Card class with new method
+*const likesNumber = this._card.querySelector(."photo-grid__like-count");
+*likesNumber.value = likesTotal; (from above)
+
+--check if I have liked a card from api.getCardList()
+*Get the card (in Card class)
+*Access array of all likers
+*Create new array of likers._id
+*In that array, filter for the "liker's" id
+*If the liker's id is mine, call _handleLikeIcon(evt) to turn black
+
+*const likesArray = forEach(res => )
+*const isLiked = likesArray.filter.checkForLikeStatus(_id)}
+*checkForLikeStatus(id) {
+
+}
+
+
+--if I click a heart to like, 
+*Up number and send to server (or send to server and add to number) - api.changeLikeCardStatus() - PUT
+*Toggle heart to black - handleLikeIcon method in Card
+
+--if heart is clicked to unlike
+*Subtract number and send to server(or the opposite) - api.changeLikeCardStatus() - DELETE
+*toggle heart to white - handleLikeIcon method in Card
