@@ -139,11 +139,12 @@ api.getAppInfo()
     );
     imageList.addItem(card.generateCard());
   }
+
+  return userData;
 })
 
 // PROFILE & AVATAR FORMS
 // Get profile from server
-api.getUserInfo()
 .then(res => {
   
   // Declare profile with UserInfo class
