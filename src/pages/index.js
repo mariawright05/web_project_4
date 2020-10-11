@@ -26,8 +26,6 @@ const avatarInput = document.querySelector(".profile__user-avatar")
 const cardPopup = document.querySelector(".popup_type_add-card");
 const addButton = document.querySelector(".profile__add-button");
 const addCardForm = cardPopup.querySelector('.popup__form');
-// const url = addCardForm.querySelector('.popup__field_type_url');
-// const title = addCardForm.querySelector('.popup__field_type_card-title');
 
 // Form definitions
 const defaultConfig = {
@@ -115,10 +113,10 @@ api.getAppInfo()
       handleLikeClick: (cardId) => {
         if(card.likeIcon.classList.contains("photo-grid__like_true")) {
           card.likeIcon.classList.remove("photo-grid__like_true");
-          // api.cardLikeRemove(cardId).then(res => card.retrieveUserLikes(res.likes.length))
+          api.cardLikeRemove(cardId).then(res => card.showLikesTotal(res.likes.length))
         } else {
           card.likeIcon.classList.add("photo-grid__like_true");
-          // api.cardLikeAdd(cardId).then(res => card.retrieveUserLikes(res.likes.length))
+          api.cardLikeAdd(cardId).then(res => card.showLikesTotal(res.likes.length))
         }
       }
       }, 
@@ -133,6 +131,7 @@ api.getAppInfo()
 // Get profile from server
 api.getUserInfo()
 .then(res => {
+  
   // Declare profile with UserInfo class
   const profile = new UserInfo(nameInput, jobInput, avatarInput);
   profile.setUserTextInfo({ name:res.name, title:res.about });

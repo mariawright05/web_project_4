@@ -42,7 +42,6 @@ class Api {
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
     .catch(err => console.log(err));
-    
   }
 
   // 7. Delete a card from server
@@ -59,8 +58,24 @@ class Api {
   // 8. Add and remove likes
   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  changeLikeCardStatus(cardId, like) {
+  // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
+  cardLikeAdd(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      headers: this._headers,
+      method: "PUT"
+    })
+    .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
+    .catch(err => console.log(err))
+  }
 
+  // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
+  cardLikeRemove(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      headers: this._headers,
+      method: "DELETE"
+    })
+    .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
+    .catch(err => console.log(err))
   }
 
   // 3. Adds user info to the server from edit user form
@@ -95,27 +110,3 @@ class Api {
 }
 
 export default Api;
-
-// ________
-
-
-
-//   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-//   cardLikeAdd(cardId) {
-//     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-//       headers: this._headers,
-//       method: "PUT"
-//     })
-//     .then(res => this._checkRes(res))
-//     .catch(err => console.log(err))
-//   }
-
-//   // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-//   cardLikeRemove(cardId) {
-//     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-//       headers: this._headers,
-//       method: "DELETE"
-//     })
-//     .then(res => this._checkRes(res))
-//     .catch(err => console.log(err))
-//   }
