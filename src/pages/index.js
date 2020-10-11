@@ -51,6 +51,14 @@ const cardTemplateSelector = ".card-template";
 // Image popup
 const imagePopup = document.querySelector(".popup_type_display-image");
 
+// FORM FUNCTIONS
+// Create new image popup and set card event listeners
+const popupWithImage = new PopupWithImage(imagePopup);
+popupWithImage.setEventListeners();
+
+// Create delete confirmation popup and set event listeners
+const deleteForm = new PopupWithForm(deleteCardPopup)
+deleteForm.setEventListeners();
 
 // INIT API CLASS AND ADD USER GROUP AND AUTH TOKEN
 const api = new Api({
@@ -181,12 +189,6 @@ api.getUserInfo()
   return res._id;
 })
 
-// Create new image popup and set card event listeners
-const popupWithImage = new PopupWithImage(imagePopup);
-popupWithImage.setEventListeners();
 
-// Create delete confirmation popup and set event listeners
-const deleteForm = new PopupWithForm(deleteCardPopup)
-deleteForm.setEventListeners();
 
 
