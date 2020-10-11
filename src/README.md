@@ -39,3 +39,4 @@ Some of the skills used are:
 * Object Oriented Programming
 * Modular JavaScript
 * Installation of Webpack and Babel
+* Working with APIs
