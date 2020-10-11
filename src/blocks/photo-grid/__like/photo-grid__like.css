@@ -9,11 +9,6 @@
   background-color: transparent;
 }
 
-
-.photo-grid__like:hover {
-  opacity: .6;
-}
-
 .photo-grid__like:focus {
   outline: none;
 }

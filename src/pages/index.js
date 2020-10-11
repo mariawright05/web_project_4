@@ -110,13 +110,19 @@ api.getAppInfo()
           })
         })
       },
-      handleLikeClick: (cardId) => {
-        if(card.likeIcon.classList.contains("photo-grid__like_true")) {
-          card.likeIcon.classList.remove("photo-grid__like_true");
-          api.cardLikeRemove(cardId).then(res => card.showLikesTotal(res.likes.length))
+      handleLikeClick: (cardId, likeIcon) => {
+        console.log(likeIcon.classList);
+        if(likeIcon.classList.contains("photo-grid__like_true")) {
+          api.cardLikeRemove(cardId).then(res => {
+            card.showLikesTotal(res.likes.length);
+            card.handleLikeIcon(likeIcon);
+          })
+
         } else {
-          card.likeIcon.classList.add("photo-grid__like_true");
-          api.cardLikeAdd(cardId).then(res => card.showLikesTotal(res.likes.length))
+          api.cardLikeAdd(cardId).then(res => {
+            card.showLikesTotal(res.likes.length);
+            card.handleLikeIcon(likeIcon);
+          })
         }
       }
       }, 

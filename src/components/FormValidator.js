@@ -56,14 +56,6 @@ class FormValidator {
     });
   }
 
-  // resetButtonText() {
-  //   const button = this._formElement.querySelector(this._submitButtonSelector);
-
-  //   if (button.value === "Saving...") {
-  //     button.value = "Save"
-  //   }
-  // }
-
   enableValidation() {
 
     this._formElement.addEventListener('submit', ((evt) => {

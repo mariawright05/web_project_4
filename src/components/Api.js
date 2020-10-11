@@ -57,8 +57,6 @@ class Api {
 
   // 8. Add and remove likes
   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
   cardLikeAdd(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       headers: this._headers,

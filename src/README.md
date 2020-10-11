@@ -1,4 +1,4 @@
-# Project 8: Around The U.S.
+# Project 8: Around The US
 
 ## Project Link
 
@@ -11,6 +11,7 @@ This project is showcasing the knowledge learned from Practicum's classes: Basic
 It is a web page showing a user's information and photos they have uploaded from around the US. Images can be deleted, liked, and new images added.
 
 This recent updated added:
+
 * Building a project with Webpack
 * Refactoring of code to reflect modular JavaScript and OOP
 
