@@ -4,6 +4,11 @@ class Api {
     this._headers = headers;
   }
 
+  // Retrieves initial cards and user info from the server
+  getAppInfo() {
+    return Promise.all([this.getUserInfo(), this.getCardList()])
+  }
+
   // 2. Loads cards from the server
   // GET https://around.nomoreparties.co/v1/groupId/cards
   getCardList() {
@@ -91,3 +96,26 @@ class Api {
 
 export default Api;
 
+// ________
+
+
+
+//   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
+//   cardLikeAdd(cardId) {
+//     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+//       headers: this._headers,
+//       method: "PUT"
+//     })
+//     .then(res => this._checkRes(res))
+//     .catch(err => console.log(err))
+//   }
+
+//   // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
+//   cardLikeRemove(cardId) {
+//     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+//       headers: this._headers,
+//       method: "DELETE"
+//     })
+//     .then(res => this._checkRes(res))
+//     .catch(err => console.log(err))
+//   }

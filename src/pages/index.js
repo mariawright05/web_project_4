@@ -6,7 +6,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo";
 import Api from "../components/Api";
 import "./index.css";
-import { name } from 'file-loader';
 
 // FORM VARIABLES
 // Profile variables 
@@ -64,6 +63,72 @@ const api = new Api({
   }
 });
 
+
+// GET INITIAL APP INFO
+api.getAppInfo()
+.then(([userData, initialCardList]) => {
+  const userId = userData._id;
+
+  // Get initial card list from server
+  const imageList = new Section({
+    items: initialCardList,
+    renderer: renderCard
+  }, imageContainer);
+
+  imageList.renderElements();
+
+  // Open new card form
+  const newCardForm = new PopupWithForm(cardPopup, (data) => {
+    api.addCard(data)
+    .then(res => {
+      renderCard(res);
+    })
+  });
+
+  // Set event listeners to open new card form
+  newCardForm.setEventListeners();
+
+  // Add event listener for add card button and open form upon click
+  addButton.addEventListener("click", (evt) => {
+    newCardForm.resetButtonText();
+    newCardForm.open();
+  });
+
+  // Call FormValidator for add card form
+  addCardValidation.enableValidation();
+
+  function renderCard(data) {
+    const card = new Card({
+      data, 
+      handleCardClick: () => {
+        popupWithImage.open(data);
+      }, 
+      handleDeleteClick: (cardId) => {
+        deleteForm.open(cardId);
+        deleteForm.setSubmitAction(() => {
+          api.removeCard(cardId).then(() => {
+            card.deleteCard();
+            deleteForm.close();
+          })
+        })
+      },
+      handleLikeClick: (cardId) => {
+        if(card.likeIcon.classList.contains("photo-grid__like_true")) {
+          card.likeIcon.classList.remove("photo-grid__like_true");
+          // api.cardLikeRemove(cardId).then(res => card.retrieveUserLikes(res.likes.length))
+        } else {
+          card.likeIcon.classList.add("photo-grid__like_true");
+          // api.cardLikeAdd(cardId).then(res => card.retrieveUserLikes(res.likes.length))
+        }
+      }
+      }, 
+      userId,
+      cardTemplateSelector
+    );
+    imageList.addItem(card.generateCard());
+  }
+})
+
 // PROFILE & AVATAR FORMS
 // Get profile from server
 api.getUserInfo()
@@ -110,100 +175,13 @@ api.getUserInfo()
 
   return res._id;
 })
-.then(userId => {
-  // IMAGE CARDS
-  // Get initial card list
-  api.getCardList()
-  .then(res => {
-    const imageList = new Section({
-      items: res,
-      renderer: (data) => {
-        const card = new Card({
-          data, 
-          handleCardClick, 
-          handleDeleteClick: ((cardId) => {
-            deleteForm.open(cardId);
-            deleteForm.setSubmitAction(() => {
-              api.removeCard(cardId).then(() => {
-                card.deleteCard();
-                deleteForm.close();
-              })
-            })
-            // api.removeCard(cardId);
 
-          })}, 
-          userId,
-          cardTemplateSelector
-        );
-        const cardElement = card.generateCard();
-        imageList.addItem(cardElement);
-      }
-    },
-    imageContainer);
+// Create new image popup and set card event listeners
+const popupWithImage = new PopupWithImage(imagePopup);
+popupWithImage.setEventListeners();
 
-    // Render initial cards
-    imageList.renderElements();
-
-
-    // Open new card form
-    const newCardForm = new PopupWithForm(cardPopup, (data) => {
-
-      // Create new card from form and add to the list
-      api.addCard(data)
-      .then(res => {
-        const card = new Card({
-          data: res, 
-          handleCardClick,
-          handleDeleteClick: ((cardId) => {
-            deleteForm.open(cardId);
-            deleteForm.setSubmitAction(() => {
-              api.removeCard(cardId).then(() => {
-                card.deleteCard();
-                deleteForm.close();
-              })
-            })
-            // api.removeCard(cardId);
-
-          })},
-          userId,
-          cardTemplateSelector
-        );
-        imageList.addItem(card.generateCard());
-      })
-      
-
-    });
-
-
-    // Add event listener for add card button and open form upon click
-    addButton.addEventListener("click", (evt) => {
-      newCardForm.resetButtonText();
-      newCardForm.open();
-    });
-
-    // Set event listeners to open form
-    newCardForm.setEventListeners();
-
-    // Call FormValidator for add card form
-    addCardValidation.enableValidation();
-  })
-
-  // Create new image popup and set card event listeners
-  const popupWithImage = new PopupWithImage(imagePopup);
-  popupWithImage.setEventListeners();
-
-  // Open card on click
-  const handleCardClick = (card) => {
-    popupWithImage.open(card);
-  };
-
-  const deleteForm = new PopupWithForm(deleteCardPopup)
-  deleteForm.setEventListeners();
-  
-
-})
-
-
-
+// Create delete confirmation popup and set event listeners
+const deleteForm = new PopupWithForm(deleteCardPopup)
+deleteForm.setEventListeners();
 
 

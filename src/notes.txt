@@ -26,13 +26,16 @@ ____________
 --Must happen first, the rest will go in Card Class:
 **get the card info from server - api.getCardList();
 
-1. load number of likes for each card - pass to Card class
+->1. load number of likes for each card - pass to Card class
 * Likes are in the card array: Card num in array -> likes array (get length) -> likes -> likes num in array -> _id (user who liked)
 * Array.length
 
 2. insert that number into the class for this in html - Card class with new method
-*const likesNumber = this._card.querySelector(."photo-grid__like-count");
-*likesNumber.value = likesTotal; (from above)
+=>  In Card -> generateCard():  this._card.querySelector('.photo-grid__like-count').value = likesTotal;
+
+=>  In constructor:   this._likesTotal = data.likes.length;
+(not sure if this is right)
+
 
 --check if I have liked a card from api.getCardList()
 *Get the card (in Card class)
@@ -46,6 +49,8 @@ ____________
 *checkForLikeStatus(id) {
 
 }
+
+__________________
 
 
 --if I click a heart to like, 

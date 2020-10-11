@@ -1,15 +1,19 @@
 import { data } from "autoprefixer";
 
 class Card {
-  constructor({ data, handleCardClick, handleDeleteClick }, userId, cardTemplateSelector) {
+  constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick }, userId, cardTemplateSelector) {
     this._link = data.link;
     this._name = data.name;
     this._id = data._id;
+    this._likesTotal = data.likes.length;
+    this._likesArray = data.likes;
     this._owner = data.owner;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     this._userId = userId;
     this._cardTemplateSelector = cardTemplateSelector;
+    this._cardElement = this._getCardTemplate();
+    this.likeIcon = this._cardElement.querySelector(".photo-grid__like");
   }
 
   id() {
@@ -51,10 +55,20 @@ class Card {
     this._card.null;
   }
 
-  _handleLikeIcon(evt) {
-    evt.target.classList.toggle("photo-grid__like_true");
+  retrieveUserLikes() {
+    const cardLikeButton = this._card.querySelector(".photo-grid__like");
+    const cardLikes = Array.from(this._likesArray);
+    cardLikes.forEach(element => {
+      if (element._id == this._userId) {
+        cardLikeButton.classList.toggle("photo-grid__like_true");
+      }
+    })
   }
 
+  _handleLikeIcon(evt) {
+      evt.target.classList.toggle("photo-grid__like_true");
+  }
+  
   _deleteRemoveButton() {
     const cardRemoveButton = this._card.querySelector(".photo-grid__remove");
     if (this._userId != this._owner._id) {
@@ -68,7 +82,9 @@ class Card {
 
     this._card.querySelector('.photo-grid__title').textContent = this._name;
     this._card.querySelector('.photo-grid__image').style.backgroundImage = `url(${this._link})`;
+    this._card.querySelector('.photo-grid__like-count').textContent = this._likesTotal;
 
+    this.retrieveUserLikes();
     this._addEventListeners();
     this._deleteRemoveButton();
 
