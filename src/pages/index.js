@@ -15,6 +15,10 @@ const editProfileForm = profilePopup.querySelector(".popup__form");
 const nameInput = document.querySelector(".profile__user-name");
 const jobInput = document.querySelector(".profile__user-about");
 
+// Profile form variables
+const profileFormNameField = document.querySelector(".popup__field_type_name");
+const profileFormTitleField = document.querySelector(".popup__field_type_title");
+
 
 // Avatar variables
 const avatarPopup = document.querySelector(".popup_type_edit-avatar");
@@ -160,8 +164,8 @@ api.getAppInfo()
     
   editButton.addEventListener("click", () => {
     const user = profile.getUserTextInfo();
-    nameInput.value = user.name;
-    jobInput.value = user.title;
+    profileFormNameField.value = user.name;
+    profileFormTitleField.value = user.title;
     profileForm.resetButtonText();
     profileForm.open();
   });
