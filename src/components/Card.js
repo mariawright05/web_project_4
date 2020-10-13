@@ -13,7 +13,7 @@ class Card {
     this._cardTemplateSelector = cardTemplateSelector;
   }
 
-  id() {
+  _getId() {
     return this._id;
   } 
 
@@ -35,11 +35,11 @@ class Card {
 
 
     cardLikeButton.addEventListener("click", (evt) => {
-      this._handleLikeClick(this.id(), cardLikeButton);
+      this._handleLikeClick(this._getId(), cardLikeButton);
     });
 
     cardRemoveButton.addEventListener("click", () => {
-      this._handleDeleteClick(this.id());
+      this._handleDeleteClick(this._getId());
     });
 
     cardImage.addEventListener("click", () => {
@@ -49,19 +49,7 @@ class Card {
 
   deleteCard() {
     this._card.remove();
-    this._card.null;
-  }
-
-  retrieveUserLikes() {
-    const cardLikeButton = this._card.querySelector(".photo-grid__like");
-    const cardLikes = Array.from(this._likesArray);
-    cardLikes.forEach(element => {
-      if (element._id == this._userId) {
-        cardLikeButton.classList.add("photo-grid__like_true")
-      } else {
-        cardLikeButton.classList.remove("photo-grid__like_true")
-      }
-    })
+    this._card = null;
   }
 
   showLikesTotal(likesTotal) {
@@ -72,7 +60,7 @@ class Card {
     const cardLikeButton = this._card.querySelector(".photo-grid__like");
     const cardLikes = Array.from(this._likesArray);
     cardLikes.forEach(element => {
-      if (element._id == this._userId) {
+      if (element._id === this._userId) {
         cardLikeButton.classList.add("photo-grid__like_true");
       }
     })
@@ -84,7 +72,7 @@ class Card {
   
   _deleteRemoveButton() {
     const cardRemoveButton = this._card.querySelector(".photo-grid__remove");
-    if (this._userId != this._owner._id) {
+    if (this._userId !== this._owner._id) {
       cardRemoveButton.remove();
     }
   }
