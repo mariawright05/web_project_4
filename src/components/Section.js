@@ -12,7 +12,7 @@ class Section {
 
   //takes DOM element & adds to the container
   addItem(item) {
-    this._container.append(item);
+    this._container.prepend(item);
   }
 }
 
