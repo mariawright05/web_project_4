@@ -158,8 +158,8 @@ api.getAppInfo()
 
   // Create profile form and add event listener to edit button
   const profileForm = new PopupWithForm(profilePopup, (data) => {
-    api.setUserInfo(data);
-    profile.setUserTextInfo(data);
+    api.setUserInfo(data)
+    .then(res => profile.setUserTextInfo({ name:res.name, title:res.about }))
   });
     
   editButton.addEventListener("click", () => {
