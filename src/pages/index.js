@@ -98,9 +98,12 @@ api.getAppInfo()
 
   // Open new card form
   const newCardForm = new PopupWithForm(cardPopup, (data) => {
+    loading(true, cardPopup);
     api.addCard(data)
     .then(res => {
       renderCard(res);
+      newCardForm.close();
+      loading(false, cardPopup);
     })
     .catch(err => console.log(err));
   });
@@ -109,8 +112,7 @@ api.getAppInfo()
   newCardForm.setEventListeners();
 
   // Add event listener for add card button and open form upon click
-  addButton.addEventListener("click", (evt) => {
-    newCardForm.resetButtonText();
+  addButton.addEventListener("click", () => {
     newCardForm.open();
   });
 
@@ -168,8 +170,13 @@ api.getAppInfo()
 
   // Create profile form and add event listener to edit button
   const profileForm = new PopupWithForm(profilePopup, (data) => {
+    loading(true, profilePopup);
     api.setUserInfo(data)
-    .then(res => profile.setUserTextInfo({ name:res.name, title:res.about }))
+    .then(res => {
+      profile.setUserTextInfo({ name:res.name, title:res.about })
+      profileForm.close();
+      loading(false, profilePopup);
+    })
     .catch(err => console.log(err))
   });
     
@@ -177,12 +184,11 @@ api.getAppInfo()
     const user = profile.getUserTextInfo();
     profileFormNameField.value = user.name;
     profileFormTitleField.value = user.title;
-    profileForm.resetButtonText();
     profileForm.open();
   });
 
   // Create avatar form and add event listener to editAvatarButton
-    const avatarForm = new PopupWithForm(avatarPopup, (data) => {
+  const avatarForm = new PopupWithForm(avatarPopup, (data) => {
     loading(true, avatarPopup);
     api.setUserAvatar(data.avatar)
     .then((res) => {
@@ -195,9 +201,6 @@ api.getAppInfo()
   });
 
   editAvatarButton.addEventListener("click", () => {
-    // const user = profile.getUserAvatarInfo();
-    // avatarInput.value = user.avatar;
-    // avatarForm.resetButtonText();
     avatarForm.open();
   });
     
