@@ -126,10 +126,12 @@ api.getAppInfo()
       handleDeleteClick: (cardId) => {
         deleteForm.open(cardId);
         deleteForm.setSubmitAction(() => {
-          api.removeCard(cardId).then(() => {
+          api.removeCard(cardId)
+          .then(() => {
             card.deleteCard();
             deleteForm.close();
           })
+          .catch(err => console.log(err))
         })
       },
       handleLikeClick: (cardId, likeIcon) => {
@@ -181,8 +183,9 @@ api.getAppInfo()
 
   // Create avatar form and add event listener to editAvatarButton
   const avatarForm = new PopupWithForm(avatarPopup, (res) => {
-    api.setUserAvatar(res.avatar);
-    profile.setUserAvatarInfo(res);
+    api.setUserAvatar(res.avatar)
+    .then(profile.setUserAvatarInfo(res))
+    .catch(err => console.log(err));
   });
 
   editAvatarButton.addEventListener("click", () => {

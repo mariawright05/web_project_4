@@ -26,6 +26,7 @@ class Api {
       headers: this._headers
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
+    .catch(err => console.log(err))
   }
 
   // 4. Adds new card to server from add card form
@@ -50,7 +51,6 @@ class Api {
       method: "DELETE",
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-    .catch(err => console.log(err))
   }
 
   // 8. Add and remove likes
@@ -84,7 +84,6 @@ class Api {
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-    .catch(err => console.log(err));
   }
 
 
@@ -99,7 +98,6 @@ class Api {
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-    .catch(err => console.log(err));
   }
 }
 
