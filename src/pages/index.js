@@ -67,9 +67,9 @@ deleteForm.setEventListeners();
 // Determines if request is successful and changes button text
 function loading(isLoading, popup) {
   if(isLoading) {
-    popup.querySelector(".popup__button").textContent = "Saving...";
+    popup.querySelector(".popup__button").value = "Saving...";
   } else {
-    popup.querySelector(".popup__button").textContent = "Save";
+    popup.querySelector(".popup__button").value = "Save";
   }
 }
 
@@ -182,16 +182,22 @@ api.getAppInfo()
   });
 
   // Create avatar form and add event listener to editAvatarButton
-  const avatarForm = new PopupWithForm(avatarPopup, (res) => {
-    api.setUserAvatar(res.avatar)
-    .then(profile.setUserAvatarInfo(res))
+    const avatarForm = new PopupWithForm(avatarPopup, (data) => {
+    loading(true, avatarPopup);
+    api.setUserAvatar(data.avatar)
+    .then((res) => {
+      avatarInput.src = res.avatar;
+      avatarForm.close();
+      loading(false, avatarPopup);
+      }
+    )
     .catch(err => console.log(err));
   });
 
   editAvatarButton.addEventListener("click", () => {
-    const user = profile.getUserAvatarInfo();
-    avatarInput.value = user.avatar;
-    avatarForm.resetButtonText();
+    // const user = profile.getUserAvatarInfo();
+    // avatarInput.value = user.avatar;
+    // avatarForm.resetButtonText();
     avatarForm.open();
   });
     
@@ -202,6 +208,8 @@ api.getAppInfo()
   // Call FormValidator for forms
   editProfileValidation.enableValidation();
   avatarCardValidation.enableValidation();
-
-  return res._id;
 })
+
+.catch(err => console.log(err))
+
+
