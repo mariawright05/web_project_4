@@ -154,17 +154,11 @@ api.getAppInfo()
     imageList.addItem(card.generateCard());
   }
 
-  return userData;
-})
-
 // PROFILE & AVATAR FORMS
-// Get profile from server
-.then(res => {
-  
   // Declare profile with UserInfo class
   const profile = new UserInfo(nameInput, jobInput, avatarInput);
-  profile.setUserTextInfo({ name:res.name, title:res.about });
-  profile.setUserAvatarInfo({ avatar:res.avatar });
+  profile.setUserTextInfo({ name:userData.name, title:userData.about });
+  profile.setUserAvatarInfo({ avatar:userData.avatar });
 
   // Create profile form and add event listener to edit button
   const profileForm = new PopupWithForm(profilePopup, (data) => {
@@ -204,7 +198,3 @@ api.getAppInfo()
 
   return res._id;
 })
-
-
-
-
