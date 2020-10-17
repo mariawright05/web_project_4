@@ -61,7 +61,6 @@ class Api {
       method: "PUT"
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-    .catch(err => console.log(err))
   }
 
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
@@ -71,7 +70,6 @@ class Api {
       method: "DELETE"
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-    .catch(err => console.log(err))
   }
 
   // 3. Adds user info to the server from edit user form

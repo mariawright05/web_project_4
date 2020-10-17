@@ -135,16 +135,20 @@ api.getAppInfo()
       handleLikeClick: (cardId, likeIcon) => {
         console.log(likeIcon.classList);
         if(likeIcon.classList.contains("photo-grid__like_true")) {
-          api.cardLikeRemove(cardId).then(res => {
+          api.cardLikeRemove(cardId)
+          .then(res => {
             card.showLikesTotal(res.likes.length);
             card.handleLikeIcon(likeIcon);
           })
+          .catch(err => console.log(err))
 
         } else {
-          api.cardLikeAdd(cardId).then(res => {
+          api.cardLikeAdd(cardId)
+          .then(res => {
             card.showLikesTotal(res.likes.length);
             card.handleLikeIcon(likeIcon);
           })
+          .catch(err => console.log(err))
         }
       }
       }, 
