@@ -64,6 +64,15 @@ popupWithImage.setEventListeners();
 const deleteForm = new PopupWithForm(deleteCardPopup)
 deleteForm.setEventListeners();
 
+// Determines if request is successful and changes button text
+function loading(isLoading, popup) {
+  if(isLoading) {
+    popup.querySelector(".popup__button").textContent = "Saving...";
+  } else {
+    popup.querySelector(".popup__button").textContent = "Save";
+  }
+}
+
 // INIT API CLASS AND ADD USER GROUP AND AUTH TOKEN
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-5",
@@ -93,6 +102,7 @@ api.getAppInfo()
     .then(res => {
       renderCard(res);
     })
+    .catch(err => console.log(err));
   });
 
   // Set event listeners to open new card form
@@ -160,6 +170,7 @@ api.getAppInfo()
   const profileForm = new PopupWithForm(profilePopup, (data) => {
     api.setUserInfo(data)
     .then(res => profile.setUserTextInfo({ name:res.name, title:res.about }))
+    .catch(err => console.log(err))
   });
     
   editButton.addEventListener("click", () => {

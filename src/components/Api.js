@@ -26,7 +26,6 @@ class Api {
       headers: this._headers
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-    .catch(err => console.log(err))
   }
 
   // 4. Adds new card to server from add card form
@@ -41,7 +40,6 @@ class Api {
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-    .catch(err => console.log(err));
   }
 
   // 7. Delete a card from server
